@@ -1,14 +1,18 @@
 - 数组字面量
+  ```
   var empty = [];
   var numbers = ['', '', '',....];
+  ```
 
 - 长度
   arr.length
 
 - 删除
   js中的数组是一个对象，可以用delete运算符从数组中移除元素
+  ```
   numbers['zero', 'one', 'two', 'shi', 'go'];
   delete numbers[2]; -> ['zero', 'one', undefined, 'shi', 'go']
+  ```
   - delete 运算符会在数组中留下空洞undefined
     - 使用splice()进行删除数组元素不会产生空洞，使得后面的元素依次替换前面的元素
       splice(index, nums);
