@@ -14,11 +14,8 @@
   var constructor = function(spec, my) {
       var that, 其他的私有实例变量;
       my = my || {};
-
       把共享的变量和函数添加到my中;
-
       that = 一个新对象;
-
       return that;
   };
 
