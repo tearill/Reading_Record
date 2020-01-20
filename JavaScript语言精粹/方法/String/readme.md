@@ -58,6 +58,8 @@
 - String.fromCharCode(char...)
   根据一串数字编码返回一个字符串
   举个栗子：
+  ```
   var a = String.fromCharCode(67, 97, 116)
   // a = 'Cat'
+  ```
   

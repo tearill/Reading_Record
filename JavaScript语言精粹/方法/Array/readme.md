@@ -4,10 +4,12 @@
   产生一个新数组，它包含一份array的浅复制并把一个或多个参数item附加在其后
   如果参数是一个数组，那么它的每个元素会被分别添加
   举个栗子：
+  ```
   var a = ['a', 'b', 'c'];
   var b = ['x', 'y', 'z'];
   var c = a.concat(b, true);
   // c = ['a', 'b', 'c', 'x', 'y', 'z', true]
+  ```
 
 - array.join(separator)
   把一个数组构造成一个字符串
@@ -23,10 +25,12 @@
   和concat方法不同的是，它会修改array
   如果参数是一个数组，它会把参数数组作为单个元素整个添加到数组中，并返回这个array的新长度值
   举个栗子：
+  ```
   var a = ['a', 'b', 'c'];
   var b = ['x', 'y', 'z'];
   var c = a.push(b, true);
   // a = ['a', 'b', 'c', ['x', 'y', 'z'], true]  c = 5
+  ```
   push 实现 ---- 见push.js
 
 - array.reverse()
