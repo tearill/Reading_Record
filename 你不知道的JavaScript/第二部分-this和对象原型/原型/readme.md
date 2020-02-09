@@ -89,21 +89,88 @@
     Foo.prototype默认有一个公用并且不可枚举的属性 .constructor，引用的是对象关联的函数(Foo)，通过"构造函数"调用new创建的对象也有一个.constructor属性，指向"创建这个对象的函数"
     1. 构造函数还是调用  
 
-       
+       函数本身并不是构造函数，当在普通函数前加上 new 关键字之后会把函数调用变成一个"构造函数调用"。new 会劫持所有普通函数并用构造对象的形式来调用它  
+       举个栗子：
+       ```
+       function NothingSpecial() {
+         console.log("Don't mind me!");
+       }
+
+       var a = new NothingSpecial();
+       // Don't mind me!
+
+       a; // {}
+       ```
+       无论如何都会构造一个对象(new的副作用)  
+
+       `JavaScript中对于"构造函数"最准确的解释是，所有带 new 的函数调用`  
 
   - 技术  
 
+    "面向类"的技巧：  
+
+    this.val = val;  
+    ObjectName.prototype.method = {...}
+
+    - 回顾构造函数  
+    
+      constructor 并不是表示(对象)被(它)构造，而是指向原型链上层的 `constructor`  
+
+      比如：如果你创建了一个新对象并替换了默认的 `.prototype` 引用，那么新对象并不会自动获取 `.constructor` 属性  
+
+      举个栗子：
+      ```
+      function Foo() { /* .. */}
+
+      Foo.prototype = { /* .. */}; // 创建一个原型对象
+
+      var a1 = new Foo();
+      a1.constructor === Foo; // false
+      a1.constructor === Object; // true
+      ```
+      a1 并没有 `.constructor` 属性，所以会委托给Foo.prototype，但是这个对象也没有，所以它会继续委托给顶端的 `Object.prototype`，然后指向内置的Object(..)函数  
+
 - (原型)继承  
+  
+  调用Object.create(..)会凭空创建一个"新"对象并且把对象内部的 [[prototype]] 关联到你指定的对象  
+
+  `Bar.prototype = Foo.prototype`： 只是让 `Bar.prototype` 直接引用 `Foo.prototype`，如果执行类似 `Bar.prototype.myLabel = ...` 的赋值语句会直接修改 `Foo.prototype` 对象  
+
+  `Bar.prototype = new Foo()`： 会创建一个关联到 `Foo.prototype` 的新对象，但是它使用了 Foo 的"构造函数调用"，如果函数 Foo 有一些副作用(比如修改状态、给 this 添加属性等)，会影响到 Bar() 的"后代"
 
 - 检查"类"关系  
+  
+  ```
+  Foo.prototype.isPrototypeOf(a);
+
+  b.isPrototypeOf(c);
+
+  Object.getPrototypeOf(a);
+
+  a.__proto__ = Foo.prototype;
+  ```
 
 - 对象关联  
 
-  - 创建关联  
+  [[prototype]] 机制就是存在于对象中的一个内部链接
 
-  - 关联关系是备用  
+  - 创建关联  
+    
+    Object.create(null) 会创建一个拥有空(null) [[prototype]]链接的对象，这个对象无法进行委托，通常被称作"字典"，它们完全不会受到原型链的干扰，因此非常事故和用来存储数据  
+
+    Object.create()的polyfill代码 --- p160-161
+
+  - 关联关系是备用 --- p161-162
 
 - 小结  
+
+  [[Get]] 操作可能会遍历原型链  
+
+  关联两个对象最常用的方法是使用 new 关键字进行函数调用  
+
+  JavaScript 机制和传统语言的 "类初始化" 和 "类继承" 很相似，但是 JavaScript 中的机制有一个核心区别，那就是不会进行复制，对象之前是通过内部的 [[prototype]] 链关联的  
+
+  "委托" 更适合描述 JavaScript 的真实机制
 
   
 
