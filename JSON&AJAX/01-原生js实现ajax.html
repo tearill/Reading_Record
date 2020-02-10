@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原生js实现ajax</title>
+    <script>
+        function fun() {
+            // 发送异步请求
+            // 1. 创建核心对象 xhr(XMLHttpRequest)
+            var xmlhttp;
+            if (window.XMLHttpRequest) { // code for IE7+, firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else { // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            // 2. 建立连接
+            /*
+                param
+                  1. 请求方式: GET、POST
+                     * GET方式：请求参数在 URL 后边拼接，send 方法空参
+                     * POST方式：请求参数在 send 方法中定义
+                  2. 请求的URL
+                  3. 同步或异步请求：默认为 true(true 异步, false 同步)
+            */
+            xmlhttp.open(
+                'GET', 
+                "http://localhost:1314", 
+                true
+            );
+            // 3. 发送请求
+            xmlhttp.send();
+            /* 4. 接受并处理来自服务器的响应结果
+                  * 获取方式：xmlhttp.responseText
+                  * 获取时间：当服务器响应成功之后 onreadystatechange
+            */
+            // xmlhttp.onload = e => {
+            //     console.log(e.target.response);
+            //     // 异步刷新文本框内容
+            //     document.querySelector('#text').value = e.target.response;
+            // } 
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    console.log(xmlhttp.responseText);
+                    document.querySelector('#text').value = xmlhttp.responseText;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="button" value="发送异步请求" onclick="fun()">
+    <!-- 测试ajax异步 请求不会刷新文本框已有的内容 -->
+    <input type="text" id="text">
+</body>
+
+</html>
