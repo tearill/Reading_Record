@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script>
+        function returnThis() {
+            console.log(this)
+            return this;
+        }
+        var user1 = { name: "Horace" };
+        
+        var user1Return = returnThis.bind(user1);
+        user1Return();
+
+        var user2 = { name: 'Horace2' };
+        user1Return.call(user2);
+    </script> -->
+
+    <!-- <script>
+        // function fn() {
+        //     this.user = 'Horace';
+        //     return {};
+        // }
+
+        // var a = new fn();
+        // console.log(a.user);
+
+        function fn() {
+            this.user = 'Horace';
+            return null;
+        }
+
+        var a = new fn();
+        console.log(a.user);
+    </script> -->
+
+    <script>
+        function callback(fn) {
+            fn()
+        }
+        callback(() => {
+            console.log(this);
+        })
+        
+        var user = {
+            name: 'Horace',
+            callback: callback,
+            callback1() {
+                callback(() => {
+                    console.log(this);
+                })
+            }
+        }
+        
+        user.callback(() => {
+            console.log(this); // window
+        });
+        user.callback1(() => {
+            console.log(this); // user
+        })
+    </script>
+</body>
+</html>

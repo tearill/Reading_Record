@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script>
+        // function demo() {
+        //     var user = 'Horace';
+        //     console.log(this); // this指向的是调用它的对象
+        //     console.log(this.user);            
+        // }
+        // window.demo();
+        
+        // var obj = {
+        //     a: 1,
+        //     b: {
+        //         a: 2,
+        //         fn: function () {
+        //             console.log(this.a); 
+        //             console.log(this);                   
+        //         }
+        //     }
+        // }
+        // obj.fn();
+        // obj.b.fn();
+        // obj.b.fn.call(obj);
+        // var demo = obj.b.fn;
+        // demo(); // undefined(没有被调用)
+
+        // function returnThis() {
+        //     console.log(this);
+        //     return this;
+        // }
+        // var user ={
+        //     name: 'Horace'
+        // }
+        // returnThis();
+        // returnThis.call(user); // Object.prototype.call()
+        // returnThis.apply(user);
+    </script> -->
+
+    <script>
+        var a = {
+            user: 'Horace',
+            fn: function(e, ee, f) {
+                console.log(this.user);
+                console.log(e, ee, f);
+            }
+        };
+        var b = a.fn;
+        // b();
+        // b.call(a, 1, 2); // call 传参一个一个传
+        // b.apply(a, [1, 2]); // apply 传参传数组 --- 一起传
+
+        var c = b.bind(a, 5); // bind 方法返回的是一个修改后的函数
+        c(1, 2);
+    </script>
+
+    <script>
+        function Fn() {
+            this.user = 'Horace'
+        }
+        // var demo = new Fn();
+        // console.log(demo.user);
+
+        function demo() {
+            console.log(this);
+        }
+        // demo();
+        // new demo(); // demo
+        var user1 = { name: 'Horace111' };
+        demo.call(user1);
+        var user2 = demo.bind(user1);
+        user2();
+
+        new user2();
+    </script>
+</body>
+
+</html>
