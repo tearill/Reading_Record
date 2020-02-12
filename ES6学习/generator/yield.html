@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function* show() {
+        //     alert('a');
+
+        //     let a = yield;
+
+        //     alert('b')
+        //     alert(a); // 5
+        // }
+
+        // let gen = show();
+
+        // gen.next(12); // 没法给 yield 传参
+        // gen.next(5); 
+    </script>
+
+    <script>
+        function* show() {
+            alert('a');
+
+            yield 12;
+
+            alert('b');
+
+            // return 55;
+        }
+
+        let gen = show();
+
+        let res1 = gen.next();
+        console.log(res1); // {value: 12, done: false}
+
+        let res2 = gen.next()
+        console.log(res2); // {value: undefined, done: true}
+    </script>
+</body>
+
+</html>
