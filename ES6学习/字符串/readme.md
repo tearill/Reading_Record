@@ -1,9 +1,11 @@
 # ES6 中的字符串
-1. 多了两个新方法
+1. 多了几个新方法
 
-   startsWith  
+   startsWith / endsWith  
 
-   endsWith
+   includes  
+
+   padStart / padEnd
 
 2. 字符串模板  
 

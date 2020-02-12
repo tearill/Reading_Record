@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 第一个参数是字符串补全生效的最大长度，第二个参数是用来补全的字符串。
+        console.log('(' + 'abc'.padStart(5) + ')'); // (  abc)
+        console.log('(' + 'abc'.padEnd(5) + ')'); // (abc  )
+
+        console.log('(' + 'abc'.padStart(5, 0) + ')'); // (00abc)
+        console.log('(' + 'abc'.padEnd(5, 0) + ')'); // (abc00)
+    </script>
+</body>
+
+</html>
