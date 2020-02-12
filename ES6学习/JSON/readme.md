@@ -1,5 +1,5 @@
 # ES6 中的JSON
-1. JSON 对象  
+1. JSON 对象   
    JSON.stringify() --- JSON 序列化，转字符串  
    JSON.parse() --- JSON 反序列化，转回JSON  
 2. 简写  
