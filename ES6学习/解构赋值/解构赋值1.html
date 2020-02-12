@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [1, 2, 3];
+
+        // let a = arr[0],
+        //     b = arr[1],
+        //     c = arr[3];
+
+        let [a, b, c] = [1, 2, 3];
+
+        console.log(a, b, c);
+    </script>
+
+    <script>
+        let {a, c, d} = {a: 12, c: 5, d: 6};
+
+        console.log(a, c, d);
+    </script>
+
+    <script>
+        let [{a, b}, [n1, n2, n3], num, str] = [{a: 12, b: 5}, [12, 5, 8], 8, 'abc'];
+
+        console.log(a, b, n1, n2, num, str);
+    </script>
+</body>
+</html>
