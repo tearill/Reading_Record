@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [12, 5, 8, 99, 27, 36, 75];
+
+        let res = arr.filter(item => {
+            if (item % 3 === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        alert(res);
+    </script>
+
+    <script>
+        let arr = [12, 5, 8, 99, 27, 36, 75];
+
+        let res = arr.filter(item => item % 3 === 0);
+
+        alert(res);
+    </script>
+
+    <script>
+        let arr = [
+            {title: '男士衬衫', price: 75},
+            {title: '女士包', price: 57842},
+            {title: '男士包', price: 65},
+            {title: '女士鞋', price: 27531},
+        ];
+
+        let res = arr.filter(json => json.price >= 10000);
+    </script>
+</body>
+
+</html>

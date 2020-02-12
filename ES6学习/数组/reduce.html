@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [12, 69, 180, 8763];
+
+        let res = arr.reduce((tmp, item, index) => {
+            // alert(tmp + ',' + b + ',' + index);
+            return tmp + item;
+        });
+        alert(res);
+    </script>
+
+    <script>
+        let arr = [12, 69, 180, 8763];
+
+        let res = arr.reduce((tmp, item, index) => {
+            if (index !== arr.length - 1) { // 不是最后一次
+                return tmp + item;
+            } else { // 最后一次
+                return (tmp + item)/arr.length;
+            }
+        })
+    </script>
+</body>
+
+</html>
