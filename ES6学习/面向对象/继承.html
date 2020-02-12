@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script>
+        function User(name, pass) {
+            this.name = name;
+            this.pass = pass;
+        }
+
+        User.prototype.showName = function() {
+            alert(this.name);
+        }
+        User.prototype.showPass = function() {
+            alert(this.pass);
+        }
+
+        function VipUser(name, pass, level) {
+            User.call(this, name, pass);
+            this.level = level;
+        }
+
+        VipUser.prototype = new User();
+        VipUser.prototype.constructor = VipUser;
+
+        VipUser.prototype.showLevel = function() {
+            alert(this.level);
+        }
+
+        var v1 = new VipUser('Horace', '123456', 3);
+
+        v1.showName();
+        v1.showPass();
+        v1.showLevel();
+    </script> -->
+
+    <script>
+        class User {
+            constructor(name, pass) {
+                this.name = name;
+                this.pass = pass;
+            }
+
+            showName() {
+                alert(this.name);
+            }
+
+            showPass() {
+                alert(this.pass);
+            }
+        }
+
+        class VipUser extends User {
+            constructor(name, pass, level) {
+                super(name, pass);
+                this.level = level;
+            }
+
+            showLevel() {
+                alert(this.level);
+            }
+        }
+
+        var v1 = new VipUser('Horace', '123456', 3);
+
+        v1.showName();
+        v1.showPass();
+        v1.showLevel();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function User(name, pass) {
+        //     this.name = name;
+        //     this.pass = pass;
+        // }
+
+        // User.prototype.showName = function() {
+        //     alert(this.name);
+        // }
+        // User.prototype.showPass = function() {
+        //     alert(this.pass);
+        // }
+        
+        class User {
+            constructor(name, pass) {
+                this.name = name;
+                this.pass = pass;
+            }
+            
+            showName() {
+                alert(this.name);
+            }
+
+            showPass() {
+                alert(this.pass);
+            }
+        }
+
+        var u1 = new User('Horace', '123456');
+
+        u1.showName();
+        u1.showPass();
+    </script>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
