@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = 12;
+        let b = 5;
+
+        let json = { a, b, c: 55 };
+
+        console.log(json);
+    </script>
+
+    <script>
+        let json1 = {
+            a: 5,
+            show() {
+                console.log(this.a);
+            }
+        };
+
+        json.show();
+    </script>
+</body>
+
+</html>
