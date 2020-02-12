@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+</head>
+
+<body>
+    <script>
+        let readData = async () => {
+            let data1 = await fetch('./1.txt').then(response => response.text())
+            let data2 = await fetch('./2.txt').then(response => response.text())
+            let data3 = await fetch('./3.txt').then(response => response.text())
+            console.log(data1);
+            console.log(data2);
+            console.log(data3);
+        }
+
+        readData();
+    </script>
+</body>
+
+</html>
