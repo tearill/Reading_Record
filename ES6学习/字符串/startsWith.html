@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str = 'slfkjdksfhg';
+
+        alert(str.startsWith('a'));
+    </script>
+
+    <script>
+        let str = 'http://baidu.com';
+
+        if (str.startsWith('http://')) {
+            alert('普通网址');
+        } else if (str.startsWith('https://')) {
+            alert('加密网址');
+        } else if (str.startsWith('git://')) {
+            alert('git地址');
+        } else if (str.startsWith('svn://')) {
+            alert('svn地址');
+        } else {
+            alert('其他')
+        }
+    </script>
+</body>
+</html>
