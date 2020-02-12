@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [12, 5, 8, 9];
+
+        for (let key of arr.keys()) {
+            alert(key); // 0, 1, 2, 3
+        }
+
+        for (let value of arr.values()) {
+            alert(value); // 12, 5, 8, 9
+        }
+
+        for (let [key, value] of arr.entries()) {
+            alert(`${key}=${value}`);
+            // 0 = 12
+            // 1 = 5
+            // 2 = 8
+            // 3 = 9
+        }
+    </script>
+</body>
+
+</html>
