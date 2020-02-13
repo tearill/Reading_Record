@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+</head>
+
+<body>
+    <script>
+        // let p1 = new Promise((resolve, reject) => {
+        //     // 异步代码
+        //     // resolve --- 成功了
+        //     // reject --- 失败了
+        //     $.ajax({
+        //         url: './arr.txt',
+        //         dataType: 'json',
+        //         success: arr => {
+        //             resolve(arr);
+        //         },
+        //         error: err => {
+        //             reject(err);
+        //         }
+        //     })
+        // });
+
+        // let p2 = new Promise((resolve, reject) => {
+        //     // 异步代码
+        //     // resolve --- 成功了
+        //     // reject --- 失败了
+        //     $.ajax({
+        //         url: './json.txt',
+        //         dataType: 'json',
+        //         success: arr => {
+        //             resolve(arr);
+        //         },
+        //         error: err => {
+        //             reject(err);
+        //         }
+        //     })
+        // });
+
+        // Promise.all([p1, p2])
+        //     .then((arr) => {
+        //         let [res1, res2] = arr;
+        //         alert('全都成功了')
+        //         alert(res1);
+        //         alert(JSON.stringify(res2));
+        //     }, () => {
+        //         alert('至少有一个失败了')
+        //     })
+    </script>
+
+    <script>
+        // const createPromise = (url) =>
+        //     new Promise((resolve, reject) => {
+        //         $.ajax({
+        //             url,
+        //             dataType: 'json',
+        //             success: arr => {
+        //                 resolve(arr);
+        //             },
+        //             error: err => {
+        //                 reject(err);
+        //             }
+        //         })
+        //     })
+
+        // Promise.all([
+        //     createPromise('./arr.txt'),
+        //     createPromise('./json.txt')
+        // ]).then((arr) => {
+        //     let [res1, res2] = arr;
+        //     alert('全都成功了')
+        //     alert(res1);
+        //     alert(JSON.stringify(res2));
+        //     console.log(res2);
+        // }, () => {
+        //     alert('至少有一个失败了')
+        // })
+    </script>
+
+    <script>
+        Promise.all([
+            fetch('./arr.txt'),
+            fetch('./json.txt')
+        ]).then((arr) => {
+            return Promise.all(arr.map(res => res.json()))
+        }, () => {
+            alert('至少有一个失败了')
+        }).then((arr) => {
+            let [res1, res2] = arr;
+            alert('全都成功了')
+            alert(res1);
+            alert(JSON.stringify(res2));
+            console.log(res2);
+        })
+    </script>
+</body>
+
+</html>
