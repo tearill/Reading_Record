@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Foo(e) {
+            this.name = "Horace";
+            this.age = e;
+        }
+
+        function objectFactory() {
+            // 创建一个新对象
+            const obj = {}; // 1
+            // 获得构造函数，第一个参数
+            const Constructor = [].shift.call(arguments); // 3
+            // const [Constructor, ...args] = [...arguments];
+
+            // 链接到原型（让obj的原型指向它的构造函数的原型）
+            obj.__proto__ = Constructor.prototype; // 5
+            // 绑定构造函数 this 到新创建的对象 obj
+            const ret = Constructor.apply(obj, arguments); // 4
+            // return obj; // 2
+            // 确保 new 出来的是一个对象
+            return typeof ret === 'object' ? ret : obj;
+        }
+
+        // console.log(new Foo(18));
+        console.log(objectFactory(Foo, 18));
+    </script>
+</body>
+
+</html>
