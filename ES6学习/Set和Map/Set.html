@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数 用来构建某一类型的对象
+        let arr = [2, 1, 2, 3, 3, 4, 5, 1];
+        let s = new Set(arr);
+        console.log(s);
+        console.log(s.size)
+        arr = [...s]
+        console.log(arr);
+
+        s.delete(3);
+        console.log(s);
+
+        s.add(6);
+        console.log(s);
+
+        console.log(s.has(1));
+
+        s.clear();
+        console.log(s);
+    </script>
+</body>
+
+</html>

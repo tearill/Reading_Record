@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [
+            ["a", 1],
+            ["b", 2],
+            ["c", 3]
+        ];
+        let m = new Map(arr);
+        console.log(m);
+
+        console.log(m.get("a"));
+
+        console.log(m.has("a"));
+
+        m.set("d", 4);
+        console.log(m);
+
+        m.delete("a");
+        console.log(m);
+
+        m.clear();
+        console.log(m);
+    </script>
+</body>
+</html>
