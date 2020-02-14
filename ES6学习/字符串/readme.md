@@ -5,7 +5,9 @@
 
    includes  
 
-   padStart / padEnd
+   padStart / padEnd  
+
+   repeat
 
 2. 字符串模板  
 
