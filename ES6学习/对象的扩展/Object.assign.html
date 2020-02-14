@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //     let obj = {
+    //         a: 1,
+    //         b: 2
+    //     };
+    //     let obj2 = {
+    //         ...obj,
+    //         c: 3, 
+    //         d: 4
+    //     };
+    //     console.log(obj2);
+    // </script>
+
+    <script>
+        let obj = {
+            a: 1,
+            b: 2
+        };
+        let obj2 = {
+            c: 3, 
+            d: 4
+        };
+        obj2 = Object.assign({}, obj, obj2);
+        console.log(obj2);
+    </script>
+</body>
+</html>
