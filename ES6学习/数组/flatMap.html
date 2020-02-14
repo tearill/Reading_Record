@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [
+            ["小明", "18"],
+            ["小刚", "18"]
+        ];
+        
+        let newArr = arr.flatMap((item, index) => {
+            item = item.filter((item, index) => index === 0)
+            return item;
+        });
+
+        console.log(newArr); // ["小明", "小刚"]
+    </script>
+</body>
+</html>
