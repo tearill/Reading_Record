@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Demo1 from '../views/Demo1.vue'
 import Calculator from '../views/Calculator.vue'
+import Demo2 from '../views/Demo2.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/calculator',
     name: 'Calculator',
     component: Calculator
+  },
+  {
+    path: '/demo2',
+    name: 'Demo2',
+    component: Demo2
   }
 ]
 
