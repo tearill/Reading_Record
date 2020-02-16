@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import Demo1 from '../views/Demo1.vue'
 import Calculator from '../views/Calculator.vue'
 import Demo2 from '../views/Demo2.vue'
+import brandDemo from '../views/brandDemo.vue'
+import filter from '../views/filter.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +29,16 @@ const routes = [
     path: '/demo2',
     name: 'Demo2',
     component: Demo2
+  },
+  {
+    path: '/brandDemo',
+    name: 'brandDemo',
+    component: brandDemo
+  },
+  {
+    path: '/filter',
+    name: 'filter',
+    component: filter
   }
 ]
 
