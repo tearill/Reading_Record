@@ -25,4 +25,8 @@
       i. 都是正数零 +0  
       ii. 都是负零 -0  
       iii. 都是 NAN  
-      
+
+- 新增关于原型操作的一系列属性和方法：  
+  1. \_\_proto\_\_ 属性
+  2. Object.setPrototypeOf()
+  3. Object.getPrototypeOf()
