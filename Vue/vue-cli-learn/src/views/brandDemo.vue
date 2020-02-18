@@ -10,12 +10,13 @@
               </label>
               <label>
                 Name:
-                <input type="text" name="name" v-model="name">
+                <input type="text" name="name" v-model="name" @keyup.f2="add">
               </label>
               <input class="btn" type="button" value="添加" @click="add">
               <label>
                 搜索名称关键字:
-                <input type="text" name="id" v-model="keywords">
+                <!-- 自定义指令 v-focus -->
+                <input type="text" id="search" name="id" v-model="keywords" v-focus>
               </label>
           </div>          
       </div>
@@ -43,6 +44,25 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
+// 自定义全局按键修饰符
+Vue.config.keyCodes.f2 = 113;
+
+// 使用 Vue.directive 定义全局指令 
+// 参数1：指令的名称 参数2：对象，指令相关的函数，在特定阶段执行
+Vue.directive('focus', {
+    bind: () => { // 当指令绑定到元素上的时候立即执行
+
+    },
+    inserted: (el) => { // 当绑定元素插入到 DOM 中
+        el.focus();
+    },
+    update: () => { // 当 VNode 更新的时候，可能会触发多次
+
+    }
+})
+
 export default {
     data() {
         return {
@@ -105,20 +125,28 @@ export default {
             let dt = new Date();
             // 年月日
             let y = dt.getFullYear();
-            let m = dt.getMonth() + 1;
-            let d = dt.getDate();     
+            let m = (dt.getMonth() + 1).toString().padStart(2, '0');
+            let d = (dt.getDate()).toString().padStart(2, '0');     
 
             // return y + '-' + m + '-' + d;
             
             if (pattern.toLowerCase() === 'yyyy-mm-dd') {
                 return `${y}-${m}-${d}`; 
             } else {
-                let hh = dt.getHours();
-                let mm = dt.getMinutes();
-                let ss = dt.getSeconds();
+                let hh = dt.getHours().toString().padStart(2, '0');
+                let mm = dt.getMinutes().toString().padStart(2, '0');
+                let ss = dt.getSeconds().toString().padStart(2, '0');
 
                 return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
             }
+        }
+    },
+    // 自定义指令
+    directive: {
+        focus: {
+           inserted: (el) => {
+               el.focus();
+           }
         }
     }
 }
@@ -155,9 +183,7 @@ export default {
             }
         }
     }
-    
 }
-
 .options {
     text-align: left;
     margin-bottom: 50px;
