@@ -1,0 +1,148 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+  
+  button {
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid #ddd;
+  }
+
+  .cnt {
+    margin: 10px;
+    .title {
+        width: 100%;
+        font-size: 30px;
+        color: coral;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .header {
+        position: relative;
+        width: 100%;
+        height: 40px;
+        border: 1px solid #ccc;
+        .new_todo_text {
+            width: 80%;
+            height: 38px;
+            border: none;
+            // border: 1px solid #000;
+            padding-left: 10px;
+            padding-right: 10px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            // background-color: red;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        .add_todo {
+            position: absolute;
+            width: 20%;
+            height: 40px;
+            right: 0px;
+            top:0px;
+            border-left: 1px solid #ccc;
+            border-radius: 0px;
+            // outline: none;
+            // appearance: none;
+            // -webkit-appearance:none;
+            // background: none;
+            line-height: 40px;
+            text-align:center;
+        }
+    }
+    .todo_list {
+        width: 100%;
+        padding-bottom: 40px;
+        .list {
+            position: relative;
+            height: 40px;
+            line-height: 40px;
+            padding-left: 60px;
+            border-bottom: 1px solid #ddd;
+            .toggle{
+                position: absolute;
+                left:8px;
+                top:8px;
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                border: 1px solid #ccc;
+                display: inline-block;
+            }
+            .toggle:after{
+                display: none;
+            }
+            .delete{
+                position: absolute;
+                right: 8px;
+                width: 32px;
+                height: 32px;
+                color: coral;
+                text-align: center;
+                display: inline-block;
+                top:0px;
+            }
+            .delete:after{
+                content: '✕'
+            }
+        }
+        .done .toggle:after{
+            display: block;
+            content: '✔';
+            position: relative;
+            top:-8px;
+            left:6px;
+            color: teal;
+        }
+          
+        .done .todo_text{
+            color: #d9d9d9;
+            text-decoration: line-through;
+        }
+    }
+    .blank {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer {
+        height: 28px;
+        line-height: 28px;
+        width: 100%;
+        font-size: 14px;
+        background-color: rgb(247, 247, 247);
+        color: #777;
+        padding: 10px;
+        position: fixed;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        display: flex;
+        .category {
+            display: flex;
+            div {
+                margin-right: 20px;
+                .active {
+                    color: #3CACDF;
+                }
+            }
+        }
+        .clear {
+            position: absolute;
+            width: 25%;
+            height: 25px;
+            line-height: 25px;
+            top: 15px;
+            right: 2rem;
+            font-size: 10px;
+            display: inline-block;
+        }
+    }
+  }
