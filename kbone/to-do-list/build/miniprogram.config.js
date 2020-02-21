@@ -26,7 +26,7 @@ module.exports = {
     app: {
         backgroundTextStyle: 'dark',
         navigationBarTextStyle: 'white',
-        navigationBarTitleText: 'kbone',
+        navigationBarTitleText: 'todoList',
     },
 	appExtraConfig: {
         sitemapLocation: 'sitemap.json',
@@ -49,7 +49,7 @@ module.exports = {
 		attrValueReduce: 5000,
 	},
     projectConfig: {
-        projectname: 'kbone-template-vue',
-        appid: '',
+        projectname: 'to-do-list',
+        appid: 'wx8a0eefd4d44f2648',
     },
 }
