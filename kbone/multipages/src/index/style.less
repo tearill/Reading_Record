@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-color: #eee;
+}
+
+.cnt {
+    .contains {
+        width: 100vw;
+        height: 140px;
+        display: flex;
+        background-color: #fff;
+        position: relative;
+        .media-box__hd {
+            margin: 10px;
+            width: 120px;
+            height: 120px;
+            box-sizing: border-box;
+            .media-box__thumb {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        .media-box__bd {
+            position: absolute;
+            right: 10px;
+            left: 145px;
+            font-size: 14px;
+            box-sizing: border-box;
+            .media-box__title {
+                font-size: 14px;
+                background-color: #fff;
+                height: 60px;
+                // margin-right: 10px;
+                padding-top: 18px;
+                box-sizing: border-box;
+                /* 超出两行打点 */
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+            }
+            .media-box__price {
+                color: #DE554F;
+                background-color: #fff;
+                padding-top: 25px;
+                box-sizing: border-box;
+            }
+            .media-box__sc {
+                color: #D5D5D5;
+                display: flex;
+                font-size: 12px;
+                padding-top: 5px;
+                box-sizing: border-box;
+                background-color: #fff;
+                // display: flex;
+                // justify-content: space-between;
+                position: relative;
+                .media-box__time {
+                    background-color: #fff;
+                    // width: 55%;
+                }
+                span {
+                    background-color: #fff;
+                }
+                img {
+                    width: 12px;
+                    height: 12px;
+                }
+                .media-box__comment {
+                    background-color: #fff;
+                    position: absolute;
+                    right: 55px;
+
+                }
+                .media-box__value {
+                    background-color: #fff;
+                    position: absolute;
+                    right: 5px;
+                }
+            }
+        }
+    }
+}
+
