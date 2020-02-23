@@ -26,10 +26,10 @@ export default {
                 // console.log(binding);
             }
         },
-        drag: {
+        drag: { // 拖拽
             inserted: (el) => {
                 const fnDown = (ev) => {
-                    console.log(ev);
+                    // console.log(ev);
                     let currentX = el.offsetLeft;
                     let currentY = el.offsetTop;
 

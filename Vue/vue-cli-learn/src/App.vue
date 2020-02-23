@@ -6,7 +6,8 @@
       <router-link to="/calculator">Calculator</router-link> |
       <router-link to="/demo2">key in v-for</router-link> |
       <router-link to="/brandDemo">brand demo</router-link> |
-      <router-link to="/filter">filter demo</router-link>
+      <router-link to="/filter">filter demo</router-link> |
+      <router-link to="/directive">directive demo</router-link>
     </div>
     <router-view/>
   </div>

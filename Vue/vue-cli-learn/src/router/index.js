@@ -6,6 +6,7 @@ import Calculator from '../views/Calculator.vue'
 import Demo2 from '../views/Demo2.vue'
 import brandDemo from '../views/brandDemo.vue'
 import filter from '../views/filter.vue'
+import directive from '../views/directive.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/filter',
     name: 'filter',
     component: filter
+  },
+  {
+    path: '/directive',
+    name: 'directive',
+    component: directive
   }
 ]
 
