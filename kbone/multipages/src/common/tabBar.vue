@@ -5,7 +5,6 @@
       <img :src="selected === index?item.selectedIconPath:item.iconPath">
       <span :class="selected === index ? 'selected' : ''">{{item.text}}</span>
     </div>
-    <router-view />
   </div>
 </template>
 
