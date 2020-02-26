@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import drag from '../plugins/drag';
 export default {
     data() {
         return {
@@ -26,35 +27,38 @@ export default {
                 // console.log(binding);
             }
         },
-        drag: { // 拖拽
+        // drag: { // 拖拽
+        //     inserted: (el) => {
+        //         const fnDown = (ev) => {
+        //             // console.log(ev);
+        //             let currentX = el.offsetLeft;
+        //             let currentY = el.offsetTop;
+
+        //             let downX = ev.clientX;
+        //             let downY = ev.clientY;
+
+        //             const fnMove = (ev) => {
+        //                 let left = ev.clientX- downX + currentX;
+        //                 let top = ev.clientY- downY + currentY;
+
+        //                 el.style.left = left + 'px';
+        //                 el.style.top = top + 'px';
+        //             }
+
+        //             const fnUp = (ev) => {
+        //                 document.removeEventListener('mousemove', fnMove, false);
+        //                 document.removeEventListener('mouseup', fnUp, false);
+        //             }
+
+        //             document.addEventListener('mousemove', fnMove, false);
+        //             document.addEventListener('mouseup', fnUp, false);
+        //         }
+        //         el.addEventListener('mousedown', fnDown, false);
+        //     }
+        // }
+        drag: {
             inserted: (el) => {
-                const fnDown = (ev) => {
-                    // console.log(ev);
-                    let currentX = el.offsetLeft;
-                    let currentY = el.offsetTop;
-
-                    let downX = ev.clientX;
-                    let downY = ev.clientY;
-
-                    const fnMove = (ev) => {
-                        let left = ev.clientX- downX + currentX;
-                        let top = ev.clientY- downY + currentY;
-
-                        el.style.left = left + 'px';
-                        el.style.top = top + 'px';
-                    }
-
-                    const fnUp = (ev) => {
-                        document.removeEventListener('mousemove', fnMove, false);
-                        document.removeEventListener('mouseup', fnUp, false);
-                    }
-
-                    document.addEventListener('mousemove', fnMove, false);
-                    document.addEventListener('mouseup', fnUp, false);
-                }
-
-                el.addEventListener('mousedown', fnDown, false);
-
+                drag(el);
             }
         }
     }
