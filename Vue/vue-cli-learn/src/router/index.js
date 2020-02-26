@@ -7,6 +7,8 @@ import Demo2 from '../views/Demo2.vue'
 import brandDemo from '../views/brandDemo.vue'
 import filter from '../views/filter.vue'
 import directive from '../views/directive.vue'
+import lifecycle from '../views/LifeCycle.vue'
+import computed_watch_1 from '../views/computed-watch-1.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +47,16 @@ const routes = [
     path: '/directive',
     name: 'directive',
     component: directive
+  },
+  {
+    path: '/lifecycle',
+    name: 'lifecycle',
+    component: lifecycle
+  },
+  {
+    path: '/computed-watch-1',
+    name: 'computed_watch_1',
+    component: computed_watch_1
   }
 ]
 
