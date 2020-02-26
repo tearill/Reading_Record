@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期函数</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h3 id="h3">{{msg}}</h3>
+        <input type="button" value="修改msg" @click="msg='No'">
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'ok'
+            },
+            methods: {
+                show() {
+                    console.log("执行了show方法");
+                }
+            },
+            beforeCreate() {
+                console.log(this.msg); // undefined
+            },
+            created() {
+                // 遇到的第二生命周期函数 --- data 和 methods 都已经被初始化好了
+                console.log(this.msg);
+                this.show();
+            },
+            beforeMount() {
+                // 模板已经在内存中编译完成
+                console.log(document.getElementById('h3').innerText, '\"beforeMount\"');
+            },
+            mounted() {
+                // 内存中编译好的模板挂载到页面上
+                console.log(document.getElementById('h3').innerText, '\"mounted\"');
+            },
+            beforeUpdate() { // 数据改变了，界面还没有被更新
+                console.log('\"beforeUpdate\"');
+                console.log('界面上的元素内容：' + document.getElementById('h3').innerText); // ok
+                console.log('data 中的数据：'+ this.msg); // No
+            },
+            updated() {
+                console.log('\"updated\"');
+                console.log('界面上的元素内容：' + document.getElementById('h3').innerText); // No
+                console.log('data 中的数据：'+ this.msg); // No
+            }
+        })
+    </script>
+</body>
+
+</html>
