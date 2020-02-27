@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件的 data</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <counter></counter>
+    <hr>
+    <counter></counter>
+    <hr>
+    <counter></counter>
+  </div>
+  <template id='temp'>
+    <div>
+      <input type="button" value="+1" @click="increase">
+      <h3>{{count}}</h3>
+    </div>
+  </template>
+  <script>
+    var obj = { count: 0 }
+    Vue.component('counter', {
+      template: '#temp',
+      data: function () {
+        // return obj
+        return {
+          count: 0
+        }
+      },
+      methods: {
+        increase() {
+          this.count++
+        }
+      }
+    });
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+
+      }
+    })
+  </script>
+</body>
+
+</html>
