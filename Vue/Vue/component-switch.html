@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件的切换-1</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 只能是西安两个组件的切换 -->
+    <!-- <a href="" @click.prevent="flag=true">登录</a>
+    <a href="" @click.prevent="flag=false">注册</a>
+
+    <login v-if="flag"></login>
+    <regist v-else></regist> -->
+
+    <a href="" @click.prevent="comName='login'">登录</a>
+    <a href="" @click.prevent="comName='regist'">注册</a>
+    <!-- Vue 提供的用来展示对应名称的组件 -->
+    <component :is='comName'>
+  </div>
+
+  <script>
+    Vue.component('login', {
+      template: '<h3>登录组件</h3>'
+    })
+
+    Vue.component('regist', {
+      template: '<h3>注册组件</h3>'
+    })
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        flag: true,
+        comName: 'login'
+      }
+    })
+  </script>
+</body>
+
+</html>
