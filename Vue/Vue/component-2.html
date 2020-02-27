@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原生 Vue.js 组件的定义方式-2</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <my-com2></my-com2>
+    <temp></temp>
+  </div>
+  <template id='temp'>
+    <div>
+      <h1>这是通过 template 在外部定义的组件结构</h1>
+      <h4>123</h4>
+    </div>
+  </template>
+  <script>
+    Vue.component('myCom2', {
+      template: '#temp'
+    });
+
+    var temp = {
+      template: '<h1>自定义组件----{{msg}}</h1>',
+      data: function () {
+        return {
+          msg: '这是组件中的data'
+        }
+      }
+    }
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      components: { // 定义实例内部私有组件
+        temp
+      }
+    })
+  </script>
+</body>
+
+</html>
