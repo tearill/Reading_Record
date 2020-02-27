@@ -9,9 +9,10 @@ import filter from '../views/filter.vue'
 import directive from '../views/directive.vue'
 import lifecycle from '../views/LifeCycle.vue'
 import computed_watch from '../views/computed-watch.vue'
-import watch_router from '../views/watch-router.vue'
-import test1 from '../components/test1.vue'
-import test2 from '../components/test2.vue'
+import ref from '../views/ref.vue'
+import component_1 from '../views/Component-1.vue'
+import component_2 from '../views/Component-2.vue'
+import component_3 from '../views/Component-3.vue'
 
 Vue.use(VueRouter)
 
@@ -62,9 +63,24 @@ const routes = [
     component: computed_watch
   },
   {
-    path: '/watch-router',
-    name: 'watch_router',
-    component: watch_router
+    path: '/ref',
+    name: 'ref',
+    component: ref
+  },
+  {
+    path: '/component-1',
+    name: 'component_1',
+    component: component_1
+  },
+  {
+    path: '/component-2',
+    name: 'component_2',
+    component: component_2
+  },
+  {
+    path: '/component-3',
+    name: 'component_3',
+    component: component_3
   }
 ]
 
