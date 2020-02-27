@@ -9,8 +9,7 @@
       <router-link to="/filter">filter demo</router-link> |
       <router-link to="/directive">directive demo</router-link> |
       <router-link to="/lifecycle">lifecycle</router-link> |
-      <router-link to="/computed-watch">computed&&watch</router-link> |
-      <router-link to="/watch-router">watch-router</router-link>
+      <router-link to="/computed-watch">computed&&watch</router-link>
     </div>
     <router-view/>
   </div>

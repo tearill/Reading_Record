@@ -10,6 +10,8 @@ import directive from '../views/directive.vue'
 import lifecycle from '../views/LifeCycle.vue'
 import computed_watch from '../views/computed-watch.vue'
 import watch_router from '../views/watch-router.vue'
+import test1 from '../components/test1.vue'
+import test2 from '../components/test2.vue'
 
 Vue.use(VueRouter)
 
@@ -55,14 +57,14 @@ const routes = [
     component: lifecycle
   },
   {
-    path: '/computed-watch-1',
-    name: 'computed_watch_1',
-    component: computed_watch_1
+    path: '/computed-watch',
+    name: 'computed_watch',
+    component: computed_watch
   },
   {
-    path: '/computed-watch-2',
-    name: 'computed_watch_2',
-    component: computed_watch_2
+    path: '/watch-router',
+    name: 'watch_router',
+    component: watch_router
   }
 ]
 
