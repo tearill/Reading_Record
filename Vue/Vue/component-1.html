@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原生 Vue.js 组件的定义方式-1</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <my-com1></my-com1>
+  </div>
+  <script>
+    // 1. 使用 Vue.extend 来创建全局的组件
+    // var com1 = Vue.extend({
+    //   template: '<h3>这是使用 Vue.extend 创建的组件</h3>', // 组件要展示的 html 结构
+    // })
+
+    // 2. 使用 Vue.component('组件的名称', 创建出来的组件模板对象)
+    // Vue.extend 可以省略，直接使用一个字面量 { }
+    Vue.component('myCom1', Vue.extend({
+      template: '<h3>这是使用 Vue.extend 创建的组件</h3>', // 组件要展示的 html 结构
+    }));
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {
+
+      },
+
+    })
+  </script>
+</body>
+
+</html>
