@@ -4,8 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>组件的切换-1</title>
+  <title>组件的切换</title>
   <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+  <style>
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+      transform: translateX(150px);
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.5s ease;
+    }
+  </style>
 </head>
 
 <body>
@@ -19,8 +31,11 @@
 
     <a href="" @click.prevent="comName='login'">登录</a>
     <a href="" @click.prevent="comName='regist'">注册</a>
+
     <!-- Vue 提供的用来展示对应名称的组件 -->
-    <component :is='comName'>
+    <transition mode="out-in">
+      <component :is='comName'>
+    </transition>
   </div>
 
   <script>
