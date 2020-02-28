@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 半场动画</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+  <style>
+    .ball {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <input type="button" value="加入购物车" @click="flag=!flag">
+    <transition
+     @before-enter="beforeEnter"
+     @enter="enter"
+     @after-enter="afterEnter"
+    >
+      <div class="ball" v-show="flag"></div>
+    </transition>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        flag: false
+      },
+      methods: {
+        beforeEnter(el) { // 动画入场前，设置动画开始前元素的起始样式
+          el.style.transform = "translate(0, 0)" // 起始位置
+        },
+        enter(el, done) { // 动画开始之后的样式，设置元素完成动画之后的结束状态
+          el.offsetWidth
+          el.style.transform = "translate(150px, 450px)"
+          el.style.transition = "all 1s ease"
+          // done 其实就是 afterEnter 函数，是一个引用
+          done()
+        },
+        afterEnter(el) {
+          this.flag = !this.flag
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
