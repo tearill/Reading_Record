@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 列表动画</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+  <style>
+    li {
+      border: 1px dashed #999;
+      margin: 5px;
+      line-height: 35px;
+      padding-left: 5px;
+      font-size: 12px;
+      width: 100%;
+    }
+
+    li:hover {
+      background-color: hotpink;
+      transition: all 0.8s ease;
+    }
+
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+      transform: translateY(80px);
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.6s ease;
+    }
+
+    /* 配合使用实现列表后续元素渐渐上移的效果 */
+    .v-move {
+      transition: all 0.6s ease;
+    }
+
+    .v-leave-active {
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <label>
+        Id:
+        <input type="text" v-model="id">
+      </label>
+      <label>
+        Name:
+        <input type="text" v-model="name">
+      </label>
+      <input type="button" value="添加" @click="add">
+    </div>
+
+    <!-- <ul> -->
+    <transition-group appear tag="ul">
+      <li v-for="(item, index) in list" :key="item.id" @click="del(index)">
+        {{item.id}} --- {{item.name}}
+      </li>
+    </transition-group>
+    <!-- </ul> -->
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        id: '',
+        name: '',
+        list: [
+          { id: 1, name: '赵高' },
+          { id: 2, name: '秦桧' },
+          { id: 3, name: '严嵩' },
+          { id: 4, name: '魏忠贤' }
+        ]
+      },
+      methods: {
+        add() {
+          this.list.push({
+            id: this.id,
+            name: this.name
+          })
+          this.id = this.name = ''
+        },
+        del(index) {
+          this.list.splice(index, 1);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
