@@ -133,7 +133,7 @@
   
 ### 自定义组件  
   组件中只能有一个根元素  
-  1. 组件的定义 --- 使用的时候建议用 - 比如引入 MyComponent -> 使用 <my-component></my-component>  
+  1. 组件的定义 --- 使用的时候建议用 - 比如引入 MyComponent -> 使用 `<my-component></my-component>`  
   2. 组件的传参 --- props 数组(校验 props 对象)  --- Component-1.vue
      + 传递 number、boolen、object、array 类型的时候要注意用 : 做动态绑定，否则传递过去的参数类型会不正确，比如 number 会变成 String类型  
      + 组件在接收到参数的时候可以进行一定的修改  
@@ -152,13 +152,13 @@
      + 多个 slot 占位的时候使用具名插槽，添加 name 属性  
   5. 动态组件  
      + 根据传值的不同显示不同的组件  
-       <component :is="cur" />  
-     + 使用 <keep-alive></keep-alive> 标签保持状态  
+       `<component :is="cur" />`  
+     + 使用 `<keep-alive></keep-alive>` 标签保持状态  
 
 ### 原生 Vue.js 自定义组件  
   如果使用了驼峰命名，在使用的时候要使用横线分割的形式  
   1. Vue.extend({}) 定义 + Vue.component 使用  --- component-1.html 
-  2. 通过 <template> 在外部定义 --- component-2.html  
+  2. 通过 `<template>` 在外部定义 --- component-2.html  
   3. 通过 components 定义内部私有组件  
 
 - 为什么组件中的 data 必须是一个函数而且必须返回一个对象  
@@ -169,5 +169,27 @@
 
 - 组件的切换  
   1. v-if + flag --- 只能实现两个组件的切换  
-  2. <component :id=''>  
+  2. `<component :id=''> ` 
   3. 加上动画美化，使切换不显得那么突兀  
+
+## day 7  
+  
+- 实现上一次的组件切换的动画效果 --- component-switch.html  
+
+- Vue 中的动画学习  
+  四个时间点：v-enter v-enter-to v-leave v-leave-to  
+  两个时间段：v-enter-avtive v-leave-active  
+  v-enter | v-leave-to 作为一组，元素进入和退出的时间点  
+  v-enter-active | v-leave-active 作为一组，元素进入之后和退出之前的时间段，用来展示动画效果  
+  + 设置不同的动画 --- 给 transition 加 name  
+  + 使用第三方类库实现 --- 给 transition 加类名  
+    1. enter-active-class  
+    2. leave-active-class  
+    都必须加一个额外的 animated 类名，不然无法显示动画效果  
+  + 半场动画：使用钩子函数  
+  + 列表动画：transition-group  
+    当需要过渡的元素是通过 v-for 渲染出来的，要使用 `<transition-group>`  
+  + appear 实现页面入场效果属性  
+    该属性是 `<transition-group>` 专属的属性  
+  + `<transition-group>` 默认会渲染成一个 `<span>` 标签  
+    有时候不想要 `<span>` 标签，可以使用 tag 属性指定渲染成固定的标签元素  
