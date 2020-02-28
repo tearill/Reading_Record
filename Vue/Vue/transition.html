@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 动画</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+  <style>
+    /* 自定义两组样式，来控制 transition 内部的元素实现动画 */
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+      transform: translateX(150px);
+    }
+
+    .v-enter-active,
+    .v-leave-avtive {
+      transition: all 0.8s ease;
+    }
+
+    .tran2-enter,
+    .tran2-leave-to {
+      opacity: 0;
+      transform: translateY(150px);
+    }
+
+    .tran2-enter-active,
+    .tran2-leave-avtive {
+      transition: all 0.8s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <input type="button" value="toggle" @click="flag=!flag">
+    <transition>
+      <h3 v-if="flag">Horace</h3>
+    </transition>
+
+    <hr>
+
+    <input type="button" value="toggle2" @click="flag2=!flag2">
+    <transition name="tran2">
+      <h6 v-if="flag2">Horace2</h6>
+    </transition>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        flag: false,
+        flag2: false
+      }
+    })
+  </script>
+</body>
+
+</html>
