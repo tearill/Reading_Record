@@ -13,7 +13,10 @@
       <router-link to="/ref">ref</router-link> |
       <router-link to="/component-1">component-1</router-link> |
       <router-link to="/component-2">component-2</router-link> |
-      <router-link to="/component-3">component-3</router-link>
+      <router-link to="/component-3">component-3</router-link> |
+      <router-link to="/component-4">component-4</router-link> |
+      <router-link to="/slot-scope">slot-scope</router-link> |
+      <router-link to="/slot-scope2">slot-scope2</router-link>
     </div>
     <router-view/>
   </div>
