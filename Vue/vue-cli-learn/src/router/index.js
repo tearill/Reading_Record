@@ -13,6 +13,9 @@ import ref from '../views/ref.vue'
 import component_1 from '../views/Component-1.vue'
 import component_2 from '../views/Component-2.vue'
 import component_3 from '../views/Component-3.vue'
+import component_4 from '../views/Component-4.vue'
+import slot_scope from '../views/slot-scope.vue'
+import slot_scope2 from '../views/slot-scope2.vue'
 
 Vue.use(VueRouter)
 
@@ -81,6 +84,21 @@ const routes = [
     path: '/component-3',
     name: 'component_3',
     component: component_3
+  },
+  {
+    path: '/component-4',
+    name: 'component_4',
+    component: component_4
+  },
+  {
+    path: '/slot-scope',
+    name: 'slot_scope',
+    component: slot_scope
+  },
+  {
+    path: '/slot-scope2',
+    name: 'slot_scope2',
+    component: slot_scope2
   }
 ]
 
