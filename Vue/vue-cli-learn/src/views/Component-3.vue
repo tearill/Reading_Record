@@ -6,7 +6,7 @@
       <!-- 默认插槽 default 也可以写成 slot="default"  -->
       <div>父组件内容</div>
       <!-- <button slot="btns">按钮</button> -->
-      <template v-slot:btns>
+      <template #btns>
         <button>按钮1</button>
         <button>按钮2</button>
       </template>
