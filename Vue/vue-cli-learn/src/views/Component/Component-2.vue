@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import MyComponent from "../components/Component2.vue";
+import MyComponent from "../../components/Component2.vue";
 export default {
   data() {
     return {

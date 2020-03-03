@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import MyComponent from "../components/Component1.vue";
+import MyComponent from "../../components/Component1";
 export default {
   components: {
     MyComponent

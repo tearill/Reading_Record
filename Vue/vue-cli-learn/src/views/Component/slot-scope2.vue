@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import cpn from '../components/Slot-scope2'
+import cpn from '../../components/Slot-scope2'
 export default {
   name: 'Component-5',
   components: {

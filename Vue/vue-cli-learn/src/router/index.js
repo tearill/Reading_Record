@@ -10,12 +10,12 @@ import directive from '../views/directive.vue'
 import lifecycle from '../views/LifeCycle.vue'
 import computed_watch from '../views/computed-watch.vue'
 import ref from '../views/ref.vue'
-import component_1 from '../views/Component-1.vue'
-import component_2 from '../views/Component-2.vue'
-import component_3 from '../views/Component-3.vue'
-import component_4 from '../views/Component-4.vue'
-import slot_scope from '../views/slot-scope.vue'
-import slot_scope2 from '../views/slot-scope2.vue'
+import component_1 from '../views/Component/Component-1.vue'
+import component_2 from '../views/Component/Component-2.vue'
+import component_3 from '../views/Component/Component-3.vue'
+import component_4 from '../views/Component/Component-4.vue'
+import slot_scope from '../views/Component/slot-scope.vue'
+import slot_scope2 from '../views/Component/slot-scope2.vue'
 
 Vue.use(VueRouter)
 

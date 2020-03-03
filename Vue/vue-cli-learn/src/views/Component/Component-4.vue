@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import myComponent1 from "../components/Component3";
-import myComponent2 from "../components/Component4";
+import myComponent1 from "../../components/Component3";
+import myComponent2 from "../../components/Component4";
 
 export default {
   name: "Component-4",

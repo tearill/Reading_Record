@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import SlotDemo from "../components/SlotDemo";
-import MyComponent from "../components/Component2.vue";
+import SlotDemo from "../../components/SlotDemo";
+import MyComponent from "../../components/Component2.vue";
 export default {
   name: "Component-3",
   data() {

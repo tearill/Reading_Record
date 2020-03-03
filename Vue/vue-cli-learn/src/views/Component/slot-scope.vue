@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import cpn from '../components/Slot-scope'
+import cpn from '../../components/Slot-scope'
 
 export default {
   name: 'slot-scope',
