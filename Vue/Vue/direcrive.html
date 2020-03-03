@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件的切换</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <input type="text" v-model="text" >
+      <button v-handle="clear">清除</button>
+    </div>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        text: '1234'
+      },
+      methods: {
+        clear() {
+          this.text = ''
+        }
+      },
+      directives: {
+        handle: {
+          inserted: (el, binding) => {
+            console.log(Object.prototype.toString.call(binding.value))
+            console.log(el)
+            el.addEventListener('click', binding.value)
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
