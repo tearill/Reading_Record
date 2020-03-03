@@ -1,6 +1,9 @@
 <template>
   <div class="cnt">
-      <tabBar></tabBar>
+    <div class="contains">
+        test
+    </div>
+    <tabBar></tabBar>
   </div>
 </template>
 
@@ -14,6 +17,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="less">
+@import '../index/style.less';
 </style>

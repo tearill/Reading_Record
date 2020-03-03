@@ -10,9 +10,10 @@ Vue.use(Router)
 const router = new Router({
     mode: 'history',
     routes: [{
-      path: '/cart',
+      path: '/',
+      // redirect: '/cart',
       name: 'Cart',
-      component: Cart,
+      component: Cart, 
     }],
 })
 

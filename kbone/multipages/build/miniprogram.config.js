@@ -5,12 +5,9 @@ const path = require('path')
 
 module.exports = {
     origin: 'https://test.miniprogram.com',
-    entry: '/index',
+    entry: '/',
     router: {
-        index: [
-            '/(home|index)?',
-            '/index.html'
-        ],
+        index: ['/'],
         explore: ['/explore'],
         cart: ['/cart'],
         me: ['/me'],
@@ -18,6 +15,9 @@ module.exports = {
     redirect: {
         notFound: 'index',
         accessDenied: 'index',
+        explore: "/explore",
+        cart: "/cart",
+        me: "/me"
     },
     generate: {
         autoBuildNpm: 'npm',
@@ -44,7 +44,7 @@ module.exports = {
                 pageName: 'me',
                 text: '我的',
                 iconPath: path.resolve(__dirname, '../src/img/me.png'),
-                selectedIconPath: path.resolve(__dirname, '../src/img/me-active.png'),
+                selectedIconPath: path.resolve(__dirname, '../src/img/me-active.png'), 
             }],
         },
     },
@@ -68,24 +68,24 @@ module.exports = {
     pages: {
         index: {
             extra: {
-                navigationBarTextStyle: 'white'
+                navigationBarTextStyle: 'white',
             }
         },
         explore: {
             extra: {
-                navigationBarTextStyle: 'white'
+                navigationBarTextStyle: 'white',
             }
         },
         cart: {
             extra: {
                 navigationBarTitleText: '购物车',
-                navigationBarBackgroundColor: '#ffffff'
+                navigationBarBackgroundColor: '#ffffff',
             }
         },
         me: {
             extra: {
                 navigationBarTitleText: '个人中心',
-                navigationBarBackgroundColor: '#ffffff'
+                navigationBarBackgroundColor: '#ffffff',
             }
         }
     },

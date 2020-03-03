@@ -10,7 +10,7 @@ Vue.use(Router)
 const router = new Router({
     mode: 'history',
     routes: [{
-      path: '/explore',
+      path: '/',
       name: 'Explore',
       component: Explore,
     }],
