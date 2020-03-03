@@ -9,14 +9,16 @@
       <router-link to="/filter">filter demo</router-link> |
       <router-link to="/directive">directive demo</router-link> |
       <router-link to="/lifecycle">lifecycle</router-link> |
-      <router-link to="/computed-watch">computed&&watch</router-link> |
+      <router-link to="/computed-watch">computed && watch</router-link> |
       <router-link to="/ref">ref</router-link> |
       <router-link to="/component-1">component-1</router-link> |
       <router-link to="/component-2">component-2</router-link> |
       <router-link to="/component-3">component-3</router-link> |
       <router-link to="/component-4">component-4</router-link> |
       <router-link to="/slot-scope">slot-scope</router-link> |
-      <router-link to="/slot-scope2">slot-scope2</router-link>
+      <router-link to="/slot-scope2">slot-scope2</router-link> |
+      <router-link to="/attars-listeners">$attars && $listeners</router-link> |
+      <router-link to="/brother-component">brother component</router-link>
     </div>
     <router-view/>
   </div>
