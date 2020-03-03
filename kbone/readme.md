@@ -59,6 +59,8 @@
 
 - build/miniprogram.config.js 中配置小程序路由(记得要修改 entry --- 小程序的入口)  
 
-- 配置 build/webpack.mp.config.js 中的 web 端入口  
+- 配置 build/webpack.mp.config.js 中的小程序端入口  
+
+  <b>注意：小程序端加上 tabbar 之后跳转 tabbar 页面的时候默认入口路由是 / 所以要在 mp 目录下每个页面对应的 main.mp.js 中把路由设置成 / ，然后在 build/miniprogram.config.js 中的 redirect 选项中配置单页面的特殊路由跳转</b>
 
 - 小程序端单页面的配置需要在 build/miniprogram.config.js 中的 pages 下配置(要添加 extra！)
