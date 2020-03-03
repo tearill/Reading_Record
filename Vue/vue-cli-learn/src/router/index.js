@@ -16,6 +16,8 @@ import component_3 from '../views/Component/Component-3.vue'
 import component_4 from '../views/Component/Component-4.vue'
 import slot_scope from '../views/Component/slot-scope.vue'
 import slot_scope2 from '../views/Component/slot-scope2.vue'
+import attars_listeners from '../views/Component/Component-5.vue'
+import brother_component from '../views/Component/Component-6.vue'
 
 Vue.use(VueRouter)
 
@@ -99,6 +101,16 @@ const routes = [
     path: '/slot-scope2',
     name: 'slot_scope2',
     component: slot_scope2
+  },
+  {
+    path: '/attars-listeners',
+    name: 'attars_listeners',
+    component: attars_listeners
+  },
+  {
+    path: '/brother-component',
+    name: 'brother_component',
+    component: brother_component
   }
 ]
 
