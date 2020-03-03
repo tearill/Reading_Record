@@ -20,7 +20,7 @@ export default {
     }
   },
   methods: {
-    handleCheckbox() {
+    handleCheckbox() {   
       // 通过 bus 分发 getCheckboxStatus 事件
       bus.$emit('getCheckboxStatus', this.isChecked)
     }
