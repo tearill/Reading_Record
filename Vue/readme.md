@@ -36,6 +36,16 @@
 学习了过滤器 filter --- 私有过滤器会屏蔽全局同名过滤器  
 通过过滤器实现品牌列表综合案例中时间的格式化  
 
+```js
+// 全局过滤器 -> 直接放到 main.js 中所有页面都可以使用
+Vue.filter('uppecase', value => {
+  return value.toUpperCase()
+})
+```
+- filter 跟 comouted 的区别  
+  filter 重视的是格式化，只改变数据的格式  
+  computed 重视的是重新计算  
+
 - v-if 和 v-show --- 条件渲染  
   v-if 条件渲染在切换的时候会直接把元素从DOM 中删除  
   v-show 条件渲染在切换的时候只是切换元素的 display 属性 --- display:none & display:block  
@@ -135,7 +145,7 @@
   组件中只能有一个根元素  
   1. 组件的定义 --- 使用的时候建议用 - 比如引入 MyComponent -> 使用 `<my-component></my-component>`  
   2. 组件的传参 --- props 数组(校验 props 对象)  --- Component-1.vue
-     + 传递 number、boolen、object、array 类型的时候要注意用 : 做动态绑定，否则传递过去的参数类型会不正确，比如 number 会变成 String类型  
+     + 传递 number、boolean、object、array 类型的时候要注意用 : 做动态绑定，否则传递过去的参数类型会不正确，比如 number 会变成 String类型  
      + 组件在接收到参数的时候可以进行一定的修改  
   3. 子组件与父组件通信  Component-2.vue
      + 子组件设置一个提交函数，父组件设置一个接收函数  
@@ -253,3 +263,7 @@
     通过 inject 注入的属性是挂载到 Vue 实例上的，所以在组件内部可以通过 this 来访问  
     provide 和 inject 主要为高阶插件/组件库提供用例，并不推荐直接用于应用程序代码中  
     
+## day 10  
+
+- Element-ui 中的 `<el-alert>` 组件源码学习，详见 repo：[Interview_Related/Source-code/element-ui-code](https://github.com/tearill/Interview_Related/tree/master/Source-code/element-ui-code)  
+
