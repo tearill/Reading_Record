@@ -14,7 +14,7 @@
 
   微任务：
   1. process.nextTick
-  2. Promise--- Promise.then()
+  2. Promise --- Promise.then()
   3. async/await --- 实际就是Promise
   4. MutationObserver(h5新特性)
 
