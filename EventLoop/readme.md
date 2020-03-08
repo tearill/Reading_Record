@@ -107,7 +107,9 @@
     
   * 注意：  
     在 chrome 浏览器的最新版本中不是上面的输出结果，因为 chrome 优化了，await 变得更快了，输出为：    
-    script start => async2 end => Promise => script end => async1 end => promise1 => promise2 => setTimeout   
+    script start => async2 end => Promise => script end => async1 end => promise1 => promise2 => setTimeout  
+
+- 立即 resolve 的 Promise 对象，是在本轮"事件循环"(event loop)的结束时，而不是在下一轮"事件循环"的开始时 --- d.js  
 
 # NodeJS 中的 EventLoop  
 - 掘金👉https://juejin.im/post/5e5c7f6c518825491b11ce93
