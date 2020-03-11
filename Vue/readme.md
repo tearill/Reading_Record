@@ -267,3 +267,7 @@ Vue.filter('uppecase', value => {
 
 - Element-ui 中的 `<el-alert>` 组件源码学习，详见 repo：[Interview_Related/Source-code/element-ui-code](https://github.com/tearill/Interview_Related/tree/master/Source-code/element-ui-code)  
 
+
+## day 11  
+
+- vuex 学习  
