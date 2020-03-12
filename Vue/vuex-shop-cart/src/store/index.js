@@ -39,6 +39,6 @@ export default new Vuex.Store({ // 创建一个数据管理部门
     }
   },
   modules: {
-
+    
   }
 })

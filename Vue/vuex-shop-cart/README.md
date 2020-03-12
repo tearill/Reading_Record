@@ -45,5 +45,8 @@
     getters: {}, // 获取 state 中的数据，可以缓存，只有请求的时候 state 中的数据变了才会再次执行
     actions: {} // 提交 mutation，存放异步操作的地方(异步请求数据/异步修改之后提交给 mutation 操作修改)
   })
-
   ```
+  + getters 类似组件中的 computed 函数，getters 对 state 中的数据简单计算并返回  
+  + 有了state状态树，我们要改变它的状态（值），就必须用vue指定唯一方法 mutation  
+    简单粗暴理解：任何不以mutation的方式改变state的值，都是耍流氓（违法）  
+  + actions 提交的是 mutations，而不是直接变更状态  

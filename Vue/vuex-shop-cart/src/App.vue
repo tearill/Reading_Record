@@ -34,8 +34,9 @@ export default {
     // 找财务 vuex
     // console.log(this.$store)
     // console.log(this.$store.getters)
-    let products = this.getProducts()
-    this.updateProducts(products)
+    // let products = this.getProducts()
+    // this.updateProducts(products)
+    this.getProducts()
   },
   methods: {
     ...mapMutations(['updateProducts']),
