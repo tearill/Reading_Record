@@ -1,23 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Demo1 from '../views/Demo1.vue'
-import Calculator from '../views/Calculator.vue'
-import Demo2 from '../views/Demo2.vue'
-import brandDemo from '../views/brandDemo.vue'
-import filter from '../views/filter.vue'
-import directive from '../views/directive.vue'
-import lifecycle from '../views/LifeCycle.vue'
-import computed_watch from '../views/computed-watch.vue'
-import ref from '../views/ref.vue'
-import component_1 from '../views/Component/Component-1.vue'
-import component_2 from '../views/Component/Component-2.vue'
-import component_3 from '../views/Component/Component-3.vue'
-import component_4 from '../views/Component/Component-4.vue'
-import slot_scope from '../views/Component/slot-scope.vue'
-import slot_scope2 from '../views/Component/slot-scope2.vue'
-import attars_listeners from '../views/Component/Component-5.vue'
-import brother_component from '../views/Component/Component-6.vue'
 
 Vue.use(VueRouter)
 
@@ -30,87 +13,111 @@ const routes = [
   {
     path: '/demo1',
     name: 'Demo1',
-    component: Demo1
+    component: () => import('../views/Demo1.vue')
   },
   {
     path: '/calculator',
     name: 'Calculator',
-    component: Calculator
+    component: () => import('../views/Calculator.vue')
   },
   {
     path: '/demo2',
     name: 'Demo2',
-    component: Demo2
+    component: () => import('../views/Demo2.vue')
   },
   {
     path: '/brandDemo',
     name: 'brandDemo',
-    component: brandDemo
+    component: () => import('../views/brandDemo.vue')
   },
   {
     path: '/filter',
     name: 'filter',
-    component: filter
+    component: () => import('../views/filter.vue')
   },
   {
     path: '/directive',
     name: 'directive',
-    component: directive
+    component: () => import('../views/directive.vue')
   },
   {
     path: '/lifecycle',
     name: 'lifecycle',
-    component: lifecycle
+    component: () => import('../views/LifeCycle.vue')
   },
   {
     path: '/computed-watch',
     name: 'computed_watch',
-    component: computed_watch
+    component: () => import('../views/computed-watch.vue')
   },
   {
     path: '/ref',
     name: 'ref',
-    component: ref
+    component: () => import('../views/ref.vue')
   },
   {
     path: '/component-1',
     name: 'component_1',
-    component: component_1
+    component: () => import('../views/Component/Component-1.vue')
   },
   {
     path: '/component-2',
     name: 'component_2',
-    component: component_2
+    component: () => import('../views/Component/Component-2.vue')
   },
   {
     path: '/component-3',
     name: 'component_3',
-    component: component_3
+    component: () => import('../views/Component/Component-3.vue')
   },
   {
     path: '/component-4',
     name: 'component_4',
-    component: component_4
+    component: () => import('../views/Component/Component-4.vue')
   },
   {
     path: '/slot-scope',
     name: 'slot_scope',
-    component: slot_scope
+    component: () => import('../views/Component/slot-scope.vue')
   },
   {
     path: '/slot-scope2',
     name: 'slot_scope2',
-    component: slot_scope2
+    component: () => import('../views/Component/slot-scope2.vue')
   },
   {
     path: '/attars-listeners',
     name: 'attars_listeners',
-    component: attars_listeners
+    component: () => import('../views/Component/Component-5.vue')
   },
   {
     path: '/brother-component',
     name: 'brother_component',
-    component: brother_component
+    component: () => import('../views/Component/Component-6.vue')
+  },
+  {
+    path: '/router/:id(\\d+)?/:type?',
+    name: 'Router',
+    meta: {
+      title: 'Router'
+    },
+    component: () => import('../views/Router.vue'),
+    children: [
+      {
+        path: 'detail',
+        name: 'Detail',
+        component: () => import('../views/Detail.vue')
+      }
+    ],
+    beforeEnter(to, from, next) {
+      console.log('beforeEnter: 即将进入Router')
+      next()
+    }
+  },
+  { 
+    path: '*',
+    name: 'NotFound',
+    component: () => import('../views/404.vue')
   }
 ]
 
@@ -118,6 +125,27 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+// 全局的路由钩子函数
+router.beforeEach((to, from, next) => {
+  console.log(`beforeEach: 即将进入${to.path}页面`)
+  // to 目标路由 
+  // from 前一个路由
+  // next 必须执行next 方法，才能跳转路由
+  //   执行next()，跳转 to 对应的路由
+  //   执行next(false)，不跳转
+  //   执行next(xxx)，跳转到 xxx 页面
+  if (to.name === 'Calculator') {
+    next('demo1')
+  } else {
+    next()
+  }
+  // next()
+})
+
+// 路由跳转后的钩子函数
+router.afterEach((to, from) => {
+  console.log(`afterEach: 进入了${to.path}页面`)
 })
 
 export default router
