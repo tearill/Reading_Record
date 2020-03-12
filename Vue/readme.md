@@ -84,21 +84,22 @@ Vue.filter('uppecase', value => {
 
 ### 生命周期钩子函数学习 --- 三大类  
   1. 创建期间的生命周期函数  
-     + beforeCreate：实例刚在内存中被创建，此时还没有初始化好 data 和 methods    
-     + created：实例已经在内存创建，data 和 methods 已经创建，还没有开始编译模板  
-     + beforeMount：已经完成模板的编译，但是还没有挂载到页面中，只是在内存中渲染好了模板，只有模板字符串  
-     + mounted：此时已经将编译好模板挂载到页面指定的容器中显示  
+     + beforeCreate：实例刚在内存中被创建，此时还没有初始化好 data 和 methods  
+     + created：实例已经在内存创建，data 和 methods 已经创建，还没有开始编译模板，$el 属性目前不可见  
+     + beforeMount：已经完成模板的编译，但是还没有挂载到页面中，相关的render函数首次被调用，只是在内存中渲染好了模板，只有模板字符串  
+     + mounted：此时已经将编译好模板挂载到页面指定的容器中显示，el 被新创建的 vm.$el 替换，并挂在到实例上去之后调用该钩子函数  
   2. 运行期间的生命周期函数  
-     + beforeUpdate：状态更新之前执行，此时 data 中的状态值是最新的，但是页面上数据还是旧的，因为还没有重新开始渲染 DOM  
-     + updated：实例更新完成后调用，此时 data 中的状态值和界面上显示的数据都完成了更新，界面已经被重新渲染好了  
+     + beforeUpdate：状态更新之前执行，发生在虚拟DOM重新渲染和打补丁之前，此时 data 中的状态值是最新的，但是页面上数据还是旧的，因为还没有重新开始渲染 DOM  
+     + updated：实例更新完成后调用，由于数据更改导致的虚拟DOM重新渲染和打补丁，在这之后会调用该钩子，此时 data 中的状态值和界面上显示的数据都完成了更新，界面已经被重新渲染好了，应该避免在此期间更改状态，因为这可能会导致更新无限循环  
   3. 销毁期间的生命周期函数   
      + beforeDestroy：实例销毁之前调用，此时实例仍然完全可用  
-     + destroyed：Vue实例销毁后调用，调用后 VUe 实例指示的所有东西都会解绑，所有的事件监听器都会被移除，所有的子实例也会被销毁  
+     + destroyed：Vue 实例销毁后调用，调用后 Vue 实例指示的所有东西都会解绑，所有的事件监听器都会被移除，所有的子实例也会被销毁  
   - 如果要调用 methods 中的方法，或者操作 data 中的数据，最早只能在 created 中  
   - 使用 vue-cli 脚手架，生命周期表现形式可能会有不一样，分成了多个模板  
 (改到 vue/lifecycle.html)  
+  - ajax 请求最好放在 created 里面，因为此时已经可以访问 this 了，请求到数据就可以直接放在data里面  
   - mounted 是实例创建期间的最后一个生命周期函数，当执行完 mounted，实例已经被完全创建了，组件进入运行阶段   
-  - 如果要通过某些插件操作页面上的 DOM 结点，最早要在 mounted 中进行  
+  - 如果要通过某些插件操作页面上的 DOM 结点，最早要在 mounted 中进行，在 mounted 前面访问 DOM 会是 undefined  
 
 ### 计算属性和侦听属性 --- computed & watch  
   1. computed 计算属性： 
@@ -269,5 +270,99 @@ Vue.filter('uppecase', value => {
 
 
 ## day 11  
+
+- vue-router 学习  
+  
+- 参数  
+  1. mode: 使用什么方式切换路由  
+     'history': html5 的 history api  
+     'hash': 会在路由加上 #/  
+  2. base: 根路径，一般设置为 '/'  
+  3. routes: 路由匹配规则  
+
+- 路由对应组件的加载  
+  两种方式  
+  1. import xxx from ''  
+     然后在 component 中放上 xxx  
+  2. component: () => import('')  
+  第一种方式为同步加载，进入网站的时候一次性全部请求完成  
+  第二种方式为异步加载，访问到相应的路由的时候才会去请求(懒加载)  
+  首页等比较重要的页面适合同步加载，其他页面适合懒加载，提升网站打开速度  
+
+- 获取当前路由对象 --- Router.vue  
+  $route  
+  $route.fullPath: 页面路由的全地址，会带上参数等，比如：/demo?a=1  
+  $route.path: router 中页面配置的地址，不会带上参数等  
+  $route.matched: 匹配到的路由，是一个数组  
+  $route.params: 路由中的参数  
+  $route.query: query参数，比如：/demo?a=1 -> query: {a: "1"}  
+  + routes 路由规则中的 meta：  
+    返回在 $route.meta，可以根据返回 meta 的不同进行相应操作，个性化定制  
+
+- 获取全局路由对象  
+  $router  
+  包含所有的路由信息  
+
+- 路由 param 参数  
+  动态路由：比如 /demo/:id -> 可以传参数，名为 id，但是值不确定，是一个变化的值  
+  动态路由可以使用正则表达式，比如：/demo/:id? -> id 可传可不传，？表示0次或1次  
+  /demo/:id(\\d)?  
+
+- 路由的切换方法：  
+  1. router-link：相当于 a 标签，to 属性相当于 href，必须配合 router-view 使用，页面的内容渲染在 router-view 的位置  
+  2. JS 方式切换：  
+     + this.$router.push('')  
+     + this.$router.push({ name: '', query: { key: '' }' .....})  
+     + this.$router.push({ path: '' }) --- 不能传 param  
+     + this.router.replace() --- 用法和 push 一样，但是不会产生历史记录，不会被浏览器的前进和后退记录到  
+     + this.router.go(-1) --- 类似 window.history.go()
+
+- 子路由、重定向、alias  
+  + children: [{}] --- path 不能加 /，加了会从 / 根路径开始匹配  
+    配合 router-view 显示在页面上  
+  + redirect: '' --- 重定向  
+  + alias: '' --- 路由别名  
+
+- 404 页面配置  
+  当输入的路径匹配不到所有的路由规则时显示 404 页面表示没找到  
+  使用通配符 * 匹配，路由的匹配规则是按照数组的顺序从前往后，把 * 放在最后匹配剩下的  
+
+- 路由的钩子函数(路由守卫) --- router/index.js  
+  + 全局的路由钩子函数：  
+    beforeEach(to, from, each) --- 进入路由之前的钩子函数，next 用于改变路由导航  
+    afterEach(to, from) --- 跳转路由之后的钩子函数，不能改变路由导航  
+  + 局部的路由钩子函数(每个路由自身的钩子)：  
+    在路由配置规则 routes 中定义：  
+    beforeEnter(to, from , next) -- 进入该路由之前    
+  + 页面(组件)中的钩子函数  
+    beforeRouteEnter(to, from, next) --- 进入路由对应组件之前，钩子在导航确认前被调用，因此即将登场的新组件还没被创建，拿不到组件的this，可以通过传一个回调给 next来访问组件实例。在导航被确认的时候执行回调，并且把组件实例作为回调方法的参数。  
+    beforeRouteUpdate(to, from, next) --- 可以访问组件实例，在切换二级导航的时候会触发  
+    beforeRouteLeave(to, from, next) --- 可以访问组件实例，通常用来禁止用户在还未保存修改前突然离开，可以通过 next(false) 来取消导航  
+  > 钩子函数执行顺序：全局钩子 -> 路由配置的相同的局部钩子 -> 组件上配置的相同的钩子  
+  例如：beforeEach -> beforeEnter -> beforeRouteEnter -> afterEach  
+  > beforeEnter、beforeRouteEnter 和 beforeRouteUpdate 不会同时执行 -> 切换二级导航的时候只会触发 beforeRouteUpdate  
+
+- 路由钩子在实际开发中的应用场景  
+  1. 清楚组件当中的定时器 --- beforeRouteLeave()  
+  2. 当页面中有未保存的内容，阻止页面的跳转 --- beforeRouteLeave()  
+  3. 保存相关内容到 Vuex 中或 Session 中 --- beforeRouteLeave()  
+
+- 钩子函数的补充：  
+  1. activated：keep-alive 组件激活时调用  
+  2. deactivated：keep-alive 组件停用时调用  
+  **调用时机**  
+  activated 在组件第一次渲染时会被调用，之后在每次缓存组件被激活时调用  
+  activated 调用时机：第一次进入缓存路由/组件，在 mounted 后面，beforeRouteEnter 守卫传给 next 的回调函数之前调用  
+  `beforeMount => 如果你是从别的路由/组件进来(前一个组件执行销毁 destroyed/或离开缓存 deactivated) => mounted => activated 进入缓存组件 => 执行 beforeRouteEnter 回调`  
+  因为组件被缓存了，再次进入缓存路由/组件时，不会触发这些钩子(beforeCreate、created、beforeMount、mounted 都不会触发)  
+  之后的调用时机是: `组件销毁 destroyed/或离开缓存 deactivated => activated 进入当前缓存组件 => 执行 beforeRouteEnter 回调(组件缓存或销毁，嵌套组件的销毁和缓存也在这里触发)`  
+  -----------------------------
+  deactivated：组件被停用(离开路由)时调用，离开当前路由并进入另一路由(beforeEach、afterEach)之后  
+  使用了 keep-alive 就不会调用 beforeDestroy(组件销毁前钩子)和 destroyed(组件销毁)，因为组件没被销毁，被缓存起来了，这个钩子可以看作 beforeDestroy 的替代，如果你缓存了组件，要在组件销毁的的时候做一些事情，可以放在这个钩子里  
+  如果你离开了路由，会依次触发：`组件内的离开当前路由的钩子 beforeRouteLeave => 路由前置守卫 beforeEach => 全局后置钩子 afterEach => deactivated 离开缓存组件 => activated 进入缓存组件(如果你进入的也是缓存路由)`  
+  如果离开的组件没有缓存的话：beforeDestroy 会替换 deactivated  
+  如果进入的路由也没有缓存的话：全局后置钩子 afterEach => 销毁 destroyed => beforeCreate 等  
+  
+## day 12  
 
 - vuex 学习  
