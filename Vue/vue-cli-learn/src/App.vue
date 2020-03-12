@@ -18,7 +18,8 @@
       <router-link to="/slot-scope">slot-scope</router-link> |
       <router-link to="/slot-scope2">slot-scope2</router-link> |
       <router-link to="/attars-listeners">$attars && $listeners</router-link> |
-      <router-link to="/brother-component">brother component</router-link>
+      <router-link to="/brother-component">brother component</router-link> |
+      <router-link to="/router">router</router-link>
     </div>
     <router-view/>
   </div>
