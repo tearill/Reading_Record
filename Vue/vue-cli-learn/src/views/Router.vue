@@ -13,8 +13,11 @@
 <script>
 export default {
   name: 'Router',
+  created() {
+    console.log('created')
+  },
   mounted() {
-    console.log(this.$route)
+    console.log(this.$route, 'mounted')
   },
   data() {
     return {
