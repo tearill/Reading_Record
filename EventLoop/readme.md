@@ -70,6 +70,7 @@
   2. 执行完 await 之后直接跳出 async 函数，让出执行的所有权   
   3. 将 await 后面的代码放到微任务队列中  
   4. 当前其他代码执行完之后再次获得执行权进行执行  
+  5. 立即 resolve 的 Promise 对象，是在本轮"事件循环"(event loop)的结束时，而不是在下一轮"事件循环"的开始时
 
   举个栗子：
   ```js
@@ -134,13 +135,13 @@
   3. setImmediate  
   4. script（整体代码)  
   6. I/O  
-  7. UI redering  
-  8. requestAnimationFrame   
+  <!-- 7. UI redering   -->
+  <!-- 8. requestAnimationFrame    -->
 
   微任务：  
   1. process.nextTick(与普通微任务有区别，在微任务队列执行之前执行) --- process.nextTick 是一个独立于 eventLoop 的任务队列  
   2. new Promise().then(回调)  
-  3. Objeect.observe  
+  <!-- 3. Object.observe   -->
   4. MutationObserver
 
   在每一个 eventLoop 阶段完成后会去检查 nextTick 队列，如果里面有任务，会让这部分任务优先于微任务执行  
