@@ -1,0 +1,15 @@
+{
+  "name": "basic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "args.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Horace",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^5.0.0",
+    "ora": "^4.0.3"
+  }
+}
