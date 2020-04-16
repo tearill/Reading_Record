@@ -1,12 +1,12 @@
 const express = require('express');
 const config = require('./middlewares/index');
 
-let app = express();
-app = config(app);
+const app = express();
+config(app);
 
-app.get('/', (req, res) => {
-  res.send('Index');
-});
+// app.get('/', (req, res) => {
+//   res.send('Index test');
+// });
 
 app.listen(3000, () => {
   console.log('Listening on port 3000');

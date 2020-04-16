@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片分享圈</title>
+  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/fontawesome.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="page-header">
+    <div class="container">
+      <div class="col-md-6">
+        <h1><a href="/">图片分享圈</a></h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      {{!-- 自定义内容 --}}
+      <div class="col-sm-8">{{{ body }}}</div>
+      <div class="col-sm-4">
+        {{> stats this}}
+        {{> popular this}}
+        {{> comments this}}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      上传图片
+    </h3>
+  </div>
+  <form action="/images" method="post" enctype="multipart/form-data">
+    <div class="panel-body form-horizontal">
+      <div class="form-group col-md-12">
+        <label for="file" class="col-sm-2 control-label">浏览:</label>
+        <div class="col-md-10">
+          <input type="file" class="form-control" name="file" id="file">
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <label for="title" class="col-md-2 control-label">标题:</label>
+        <div class="col-md-10">
+          <input type="text" class="form-control" name="title">
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <label for="description" class="col-md-2 control-label">描述:</label>
+        <div class="col-md-10">
+          <textarea name="description" rows="2" class="form-control"></textarea>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="col-md-12 text-right">
+          <button type="submit" id="login-btn" class="btn btn-success">
+            <i class="fa fa-cloud-upload"> 上传图片</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      最新图片
+    </h3>
+  </div>
+  <div class="panel-body">
+    {{#each images}}
+      <div class="col-md-4 text-center" style="padding-bottom: 1em;">
+        <a href="/images/{{uniqueId}}">
+          <img src="/public/upload/{{filename}}" alt="{{title}}"
+            style="width: 175px; height: 175px;" class="img-thumbnail">
+        </a>
+      </div>
+    {{/each}}
+  </div>
+</div>
