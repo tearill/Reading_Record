@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    console.log('script start');
+
+    setTimeout(function () {
+      console.log('setTimeout');
+    }, 0);
+
+    Promise.resolve().then(function () {
+      console.log('promise1');
+    }).then(function () {
+      console.log('promise2');
+    });
+
+    console.log('script end');
+    // task queue: ['script start', 'script end', 'setTimeout']
+    // Microtask queue: ['promise1', 'promise2']
+    // 1. 'script start', 'script end'
+    // 2. 'promise', .then 又产生一个 Microtask -> 'promise2'
+    // 3. 
+    // 1. 'setTimeout'
+  </script>
+</body>
+
+</html>

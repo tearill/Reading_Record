@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // document.body.style.backgroundColor = 'red';
+    // document.body.style.backgroundColor = 'blue';
+    // 属于同一个 task
+    // 1. task 执行
+    // 2. 
+    // 3. 渲染
+    // document.body.style.backgroundColor = 'red';
+    // setTimeout(() => {
+    //   document.body.style.backgroundColor = 'blue';
+    // });
+    // 1. backgroundColor = 'red', setTimeout
+    // 2.
+    // 3. 渲染 red
+    // 1. backgroundColor = 'blue'
+    // 2. 
+    // 3. 渲染 blue
+    document.body.style.backgroundColor = 'red';
+    Promise.resolve().then(() => {
+      document.body.style.backgroundColor = 'black';
+    })
+    setTimeout(() => {
+      document.body.style.backgroundColor = 'blue';
+    });
+    // task: [backgroundColor = 'red', backgroundColor = 'blue']
+    // microtask: [backgroundColor = 'black']
+    // 1. backgroundColor = 'red'
+    // 2. backgroundColor = 'black'
+    // 3. render 'black'
+    // 1. backgroundColor = 'blue'
+    // 2. 
+    // 3. render 'blue'
+  </script>
+</body>
+</html>
