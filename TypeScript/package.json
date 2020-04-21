@@ -1,0 +1,15 @@
+{
+  "name": "TypeScript",
+  "version": "1.0.0",
+  "description": "TypeScript JavaScript 超集 编程语言 静态类型和面向对象  \r 大型应用、多人协作",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^13.13.1"
+  }
+}
