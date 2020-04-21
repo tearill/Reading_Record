@@ -1,5 +1,6 @@
 "use strict";
-private;
+// !类的修饰符
+// public protected private
 var Person1 = /** @class */ (function () {
     function Person1(sex, name, age) {
         this.sex = sex;
@@ -15,11 +16,11 @@ var Person1 = /** @class */ (function () {
     return Person1;
 }());
 var person1 = new Person1('male', 'Horace', 20);
-console.log(person1.sex);
-console.log(person1.name);
-console.log(person1.age);
-person1.sayHello();
-person1.sayLove();
+// console.log(person1.sex)
+// console.log(person1.name)
+// console.log(person1.age)
+// person1.sayHello()
+// person1.sayLove()
 //! readonly
 var Man = /** @class */ (function () {
     function Man() {
@@ -28,4 +29,4 @@ var Man = /** @class */ (function () {
     return Man;
 }());
 var man = new Man();
-man.sex = 'female';
+// man.sex = 'female' // 只读

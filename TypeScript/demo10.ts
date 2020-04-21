@@ -1,5 +1,5 @@
 // !类的修饰符
-public protected private
+// public protected private
 class Person1 {
   public sex: string
   protected name: string
@@ -18,11 +18,11 @@ class Person1 {
 }
 
 var person1: Person1 = new Person1('male', 'Horace', 20)
-console.log(person1.sex)
-console.log(person1.name)
-console.log(person1.age)
-person1.sayHello()
-person1.sayLove()
+// console.log(person1.sex)
+// console.log(person1.name)
+// console.log(person1.age)
+// person1.sayHello()
+// person1.sayLove()
 
 //! readonly
 class Man {
@@ -30,4 +30,4 @@ class Man {
 }
 
 var man: Man = new Man()
-man.sex = 'female'
+// man.sex = 'female' // 只读
