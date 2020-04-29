@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>错误监控</title>
+</head>
+<body>
+  <script>
+    // 1: 意料之中
+    let obj = {
+      name1: null
+    }
+
+    new Promise((resolve, reject) => {
+      reject('error')
+    })
+
+    try {
+      setTimeout(() => {
+        obj.name1.a = 123 
+      });
+    } catch (error) {
+      console.log(error)
+    }
+    // try catch 只能捕获同步的错误
+
+    console.log(123)
+    console.log(456)
+    
+    // 2: 意料之外 全局捕获
+    // 事件：捕获 冒泡
+    window.addEventListener('error', function(err) {
+      console.log(err)
+    })
+    
+    // 3: Promise
+    window.addEventListener('unhandledrejection', function(err) {
+      console.log(err)
+    })
+  </script>
+</body>
+</html>

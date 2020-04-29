@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <img src="https://user-gold-cdn.xitu.io/2020/4/29/1" alt="">
+  <!-- 资源加载出错不会冒泡 -->
+  <!-- 只能在捕获阶段监听 -->
+  <script>
+    document.addEventListener('error', err => {
+      console.log(err)
+    }, true)
+  </script>
+</body>
+</html>

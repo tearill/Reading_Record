@@ -1,0 +1,55 @@
+<!-- api 请求是否出错 -->
+<!-- axios.get('./a')
+  .then(res => {
+    if (res.code !== 200) {
+      出错，上报后端
+    }
+  })
+axios.get('./b')
+  .then(res => {
+    if (res.code !== 200) {
+      出错，上报后端
+    }
+  }) -->
+
+<!-- 统一处理 -->
+<!-- axios -> js原生 XMLHttpRequest 封装出来的一个库
+只要把 XMLHttpRequest 监听请求完成的这个方法改掉 -->
+
+<!--
+1. 
+2. 
+3. 
+无论是 success error timeout 落脚点都是原生 api
+ -->
+<!-- <button></button> -->
+<script>
+  const _XMLHttpRequest = XMLHttpRequest
+  window.XMLHttpRequest = function() {
+    const xhr = new _XMLHttpRequest()
+    xhr.addEventListener('error', () => {
+      console.log('xhr error')
+      // 整个服务器宕机
+    })
+    xhr.addEventListener('timeout', () => {
+      console.log('xhr timeout')
+    })
+    xhr.addEventListener('readystatechange', () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status !== 200) {
+          console.log('xhr error', xhr.status)
+        }
+      }
+    })
+    return xhr
+  }
+</script>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+<script>
+  axios.get('http://neteasecloudmusicapi.zhaoboy.com/sea')
+    .then(res => {
+      console.log(res)
+    })
+</script>
