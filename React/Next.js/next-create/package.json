@@ -1,0 +1,20 @@
+{
+  "name": "next-create",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p 80"
+  },
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "antd": "^4.2.0",
+    "axios": "^0.19.2",
+    "babel-plugin-import": "^1.13.0",
+    "moment": "^2.25.1",
+    "next": "9.3.6",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  }
+}
