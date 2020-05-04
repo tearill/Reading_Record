@@ -51,7 +51,8 @@ module.exports = appInfo => {
   }
 
   config.cors = {
-    origin: '*',
+    origin: 'http://localhost:3001',
+    credentials: true, // 允许 cookie 可以跨域
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
   }
 

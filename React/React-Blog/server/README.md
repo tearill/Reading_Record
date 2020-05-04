@@ -74,3 +74,26 @@
     }
     ```
 
+- 中间层与后台的结合  
+  登录实现  
+  中间层配置登录验证接口路由  
+  根据输入的用户名和密码请求数据库得到返回  
+  前端 axios 携带数据请求接口  
+  根据返回的数据进行判断和跳转  
+
+  跨域设置  
+  请求后端接口导致跨域问题  
+  ```js
+  config.security = {
+    csrf: {
+      enable: false
+    },
+    domainWhiteList: ['*'] // 域名白名单
+  }
+
+  config.cors = {
+    origin: 'http://localhost:3001',
+    credentials: true, // 允许 cookie 可以跨域
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
+  }
+  ```
