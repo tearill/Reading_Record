@@ -97,3 +97,20 @@
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
   }
   ```
+
+- 中台路由守卫  
+  防跳墙，防止未登录进入  
+  编写中间件实现 middleware/adminAuth.js  
+  ```js
+  module.exports = options => {
+    return async function admin(ctx, next) {
+      console.log(ctx.session.openId, '-------')
+      if (ctx.session.openId) {
+        await next()
+      } else {
+        ctx.body = { data: '请先登录!' }
+      }
+    }
+  }
+  ```
+  

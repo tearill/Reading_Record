@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import marked from 'marked'
+import axios from 'axios'
+import servicePath from '../config/apiUrl'
 import '../static/css/AddArticle.css'
-import { Row, Col, Input, Select, Button, DatePicker } from 'antd'
+import { Row, Col, Input, Select, Button, DatePicker, message } from 'antd'
 const { Option } = Select
 const { TextArea } = Input
 
-function AddArticle() {
+function AddArticle(props) {
   const [articleId, setArticleId] = useState(0) // 文章的 ID，如果是0说明是新增加，如果不是0，说明是修改
   const [articleTitle, setArticleTitle] = useState('') // 文章标题
   const [articleContent, setArticleContent] = useState('') // markdown 的编辑内容
@@ -15,7 +17,11 @@ function AddArticle() {
   const [showDate, setShowDate] = useState() // 发布日期
   const [updateDate, setUpdateDate] = useState() // 修改日志的日期
   const [typeInfo, setTypeInfo] = useState([]) // 文章类别信息
-  const [selectedType, setSelectType] = useState(1) // 选择的文章类别
+  const [selectedType, setSelectType] = useState('选择类型') // 选择的文章类别
+
+  useEffect(() => {
+    getTypeInfo()
+  }, [])
 
   marked.setOptions({
     renderer: new marked.Renderer(),
@@ -40,6 +46,86 @@ function AddArticle() {
     setIntroducehtml(html)
   }
 
+  const getTypeInfo = () => {
+    axios({
+      method: 'get',
+      url: servicePath.getTypeInfo,
+      withCredentials: true
+    }).then(res => {
+      if (res.data.data == '请先登录!') {
+        localStorage.removeItem('openId')
+        props.history.push('/')
+      } else {
+        setTypeInfo(res.data.data)
+      }
+    })
+  }
+
+  const selectTypeHandler = (value) => {
+    setSelectType(value)
+  }
+
+  const saveArticle = () => {
+    if (selectedType == '选择类型') {
+      message.error('请选择文章类型!')
+      return false
+    } else if (!articleTitle) {
+      message.error('文章标题不能为空!')
+      return false
+    } else if (!articleContent) {
+      message.error('文章内容不能为空!')
+      return false
+    } else if (!introducemd) {
+      message.error('文章简介不能为空!')
+      return false
+    } else if (!showDate) {
+      message.error('发布日期不能为空!')
+      return false
+    }
+    // message.success('检验通过')
+    let data = {}
+    data.type_id = selectedType
+    data.title = articleTitle
+    data.article_content = articleContent
+    data.introduce = introducemd
+    let dataText = showDate.replace('-', '/')
+    data.add_time = (new Date(dataText).getTime()) / 1000
+    if (articleId === 0) {
+      // 新增
+      data.view_count = 0
+      axios({
+        method: 'post',
+        url: servicePath.addArticle,
+        data: data,
+        withCredentials: true
+      }).then(res => {
+        console.log(res);
+        setArticleId(res.data.insertId)
+        if (res.data.isSuccess) {
+          message.success('文章发布成功')
+        } else {
+          message.error('文章发布失败')
+        }
+      })
+    } else {
+      // 修改文章
+      data.id = articleId
+      axios({
+        method: 'post',
+        url: servicePath.updateArticle,
+        data: data,
+        withCredentials: true
+      }).then(res => {
+        if (res.data.isSuccess) {
+          message.success('文章保存成功')
+        } else {
+          message.error('文章保存失败')
+        }
+      })
+    }
+    
+  }
+
   return (
     <div>
       <Row gutter={5}>
@@ -47,14 +133,21 @@ function AddArticle() {
           <Row gutter={10}>
             <Col span={20}>
               <Input
+                value={articleTitle}
                 placeholder="文章标题"
                 size="large"
+                onChange={(e) => setArticleTitle(e.target.value)}
               />
             </Col>
             <Col span={4}>
               &nbsp;
-              <Select defaultValue="1" size="large">
-                <Option value="1">技术文章</Option>
+              <Select defaultValue={selectedType} size="large" onChange={selectTypeHandler}>
+                {/* <Option value="1">技术文章</Option> */}
+                {
+                  typeInfo.map((item, index) => {
+                    return (<Option key={index} value={item.id}>{item.typeName}</Option>)
+                  })
+                }
               </Select>
             </Col>
           </Row>
@@ -77,7 +170,7 @@ function AddArticle() {
           <Row>
             <Col span={24}>
               <Button size="large">暂存文章</Button>&nbsp;
-              <Button type="primary" size="large">发布文章</Button>
+              <Button type="primary" size="large" onClick={saveArticle}>发布文章</Button>
               <br />
             </Col>
             <Col span={24}>
@@ -93,6 +186,7 @@ function AddArticle() {
             <Col span={12}>
               <div className="date-select">
                 <DatePicker
+                  onChange={(date, dateString) => setShowDate(dateString)}
                   placeholder="发布日期"
                   size="large"
                 />
