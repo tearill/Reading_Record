@@ -17,10 +17,16 @@ function AddArticle(props) {
   const [showDate, setShowDate] = useState() // 发布日期
   const [updateDate, setUpdateDate] = useState() // 修改日志的日期
   const [typeInfo, setTypeInfo] = useState([]) // 文章类别信息
-  const [selectedType, setSelectType] = useState('选择类型') // 选择的文章类别
+  const [selectedType, setSelectType] = useState(1) // 选择的文章类别
 
   useEffect(() => {
     getTypeInfo()
+    // 获取文章 id
+    let tmpId = props.match.params.id
+    if (tmpId) {
+      setArticleId(tmpId)
+      getArticleById(tmpId)
+    }
   }, [])
 
   marked.setOptions({
@@ -123,7 +129,22 @@ function AddArticle(props) {
         }
       })
     }
-    
+  }
+
+  const getArticleById = (id) => {
+    axios(servicePath.getArticleById + id, {withCredentials: true})
+      .then(res => {
+        let articleInfo = res.data.data[0]
+        setArticleTitle(articleInfo.title)
+        setArticleContent(articleInfo.article_content)
+        let html = marked(articleInfo.article_content)
+        setMarkdownContent(html)
+        setIntroducemd(articleInfo.introduce)
+        let introduceHtml = marked(articleInfo.introduce)
+        setIntroducehtml(introduceHtml)
+        setShowDate(articleInfo.add_time)
+        setSelectType(articleInfo.type_id)
+      })
   }
 
   return (
@@ -141,7 +162,10 @@ function AddArticle(props) {
             </Col>
             <Col span={4}>
               &nbsp;
-              <Select defaultValue={selectedType} size="large" onChange={selectTypeHandler}>
+              <Select 
+                defaultValue={selectedType} 
+                size="large" 
+                onChange={selectTypeHandler}>
                 {/* <Option value="1">技术文章</Option> */}
                 {
                   typeInfo.map((item, index) => {
@@ -158,6 +182,7 @@ function AddArticle(props) {
                 className="markdown-content"
                 rows={35}
                 placeholder="文章内容"
+                value={articleContent}
                 onChange={changeContent}
               />
             </Col>
@@ -178,6 +203,7 @@ function AddArticle(props) {
               <TextArea
                 rows={4}
                 placeholder="文章简介"
+                value={introducemd}
                 onChange={changeIntroduce}
               ></TextArea>
               <br /><br />
