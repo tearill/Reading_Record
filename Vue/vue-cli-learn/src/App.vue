@@ -21,7 +21,7 @@
       <router-link to="/brother-component">brother component</router-link> |
       <router-link to="/router">router</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
