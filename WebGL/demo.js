@@ -7,8 +7,10 @@ var VSHADER_SOURCE, FSHADER_SOURCE
 VSHADER_SOURCE =
   'attribute vec4 a_Position;\n' +
   'uniform mat4 u_ModelMatrix;\n' +
+  'uniform mat4 u_ViewMatrix;\n' +
+  'uniform mat4 u_ProjectionMatrix;\n' +
   'void main() {\n' +
-  'gl_Position = u_ModelMatrix * a_Position;\n' +
+  'gl_Position = u_ProjectionMatrix * u_ViewMatrix * u_ModelMatrix * a_Position;\n' +
   '}\n'
 
 FSHADER_SOURCE =
@@ -78,6 +80,15 @@ gl.clearColor(0, 0, 0, 1)
 var u_ModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix')
 var modelMatrix = new Matrix4()
 
+var u_ViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix')
+var viewMatrix = new Matrix4()
+viewMatrix.lookAt(0.3, 0.3, 0.3, 0, 0, 0, 0, 1, 0)
+
+var u_ProjectionMatrix = gl.getUniformLocation(gl.program, 'u_ProjectionMatrix')
+var projectionMatrix = new Matrix4()
+// projectionMatrix.perspective(120, 10, 0.1, 1000)
+projectionMatrix.ortho(-1, 1, -5, 5, 0.1, 1000)
+
 // 更新旋转角
 function animate() {  
   var now = Date.now()
@@ -92,6 +103,8 @@ function draw() {
   modelMatrix.setRotate(currentAngle, 0, 1, 0) // 绕 y 轴旋转
   // modelMatrix.setRotate(currentAngle, 0, 0, 1) // 绕 z 轴旋转
   gl.uniformMatrix4fv(u_ModelMatrix, false, modelMatrix.elements) // 传递到 shader 中
+  gl.uniformMatrix4fv(u_ViewMatrix, false, viewMatrix.elements)
+  gl.uniformMatrix4fv(u_ProjectionMatrix, false, projectionMatrix.elements)
   // 拿到设置的 clearColor 进行清除
   gl.clear(gl.COLOR_BUFFER_BIT)
   gl.drawArrays(gl.TRIANGLES, 0, n)
