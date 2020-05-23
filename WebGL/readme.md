@@ -86,3 +86,13 @@ ThreeJS 是 WebGL 的封装
   - renderer 渲染器，传递 camera、scene 进行渲染  
   - 建模 mesh  
     建模需要形状(geometry)和材质(material)  
+
+- 光照原理  
+  - ThreeJS 光源类型  
+    1. DirectionalLight 平行光，作用于每一个平面都是相同的入射角和光强 比如太阳光  
+    2. PointLight 点光源  
+    3. AmbientLight 环境光(全局光)，对整个场景进行基础的光照加成和环境的烘托(黑夜的场景)  
+    4. SpotLight 聚光灯，点光源的升级，定义受光照影响的范围，超出范围的位置不受到影响，比如手电筒  
+
+  - 光照模型  
+    
