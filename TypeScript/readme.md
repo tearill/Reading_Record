@@ -401,3 +401,129 @@ class Duck extends Animal {
 }
 ```
 
+#### 构造函数
+
+TS 中声明一个类的同时会创建多个声明：
+
+1）第一个声明是一个类型，这个类型是这个类实例对象类型，用于注解类的实例对象。
+
+2）第二个声明则是类的构造函数，在实例化类时，就是通过 `new` 关键字加上这个构造函数调用来生成一个类的实例。
+
+#### 声明注解类实例的类型
+
+举个栗子：
+
+```typescript
+class Animal {
+  name: string;
+
+  static isAnimal(a: Animal): boolean {
+    return a instanceof Animal;
+  }
+}
+```
+
+用 `Animal` 类注解参数
+
+#### 声明构造函数
+
+当执行 `new Animal()` 生成实例的时候，`Animal` 是一个构造函数
+
+利用 JS 的 `typeof` 方法注解：
+
+`let AnimalCreator: typeof Animal = Animal;`
+
+### 类与接口
+
+类一般只能继承类，但是多个不同的类如果共有一些属性或者方法时，就可以用接口来定义这些属性或者方法，然后多个类来继承这个接口，以达到属性和方法复用的目的
+
+在类上使用 `implements` 关键字指定实现接口方法
+
+```typescript
+interface Alarm {
+  alert(): void;
+}
+interface Light {
+  lightOn(): void;
+  lightOff(): void;
+}
+class Car implements Alarm, Light {
+  alert() {
+    console.log('Car alarm');
+  }
+
+  lightOn() {
+    console.log('Car lighton');
+  }
+
+  lightOff() {
+    console.log('Car lightoff');
+  }
+}
+```
+
+#### 接口继承类
+
+接口之所以可以继承类是因为类在声明的时候会声明一个类型，此类型用于注解类的实例。而接口继承类就是继承这个声明的类型
+
+#### 类作为接口使用
+
+类作为接口使用的场景主要在我们给 React 组件的 `Props` 和 `State` 进行类型注解的时候，我们既要给组件的 `Props` 进行类型注解，有时候还要设置组件的 `defaultProps` 值
+
+举个栗子：
+
+```jsx
+interface Props {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+interface State {
+  content: string;
+  user: string;
+  date: string;
+}
+
+const hardCodeDefaultProps = {
+  value: 'Horace',
+  onChange(value: string) { console.log(`{% raw %}Hello ${value}{% endraw %}`); }
+}
+
+class TodoInput extends React.Component<Props, State> {
+  static defaultProps: Props = hardCodeDefaultProps;
+
+  render() {
+    return <div>Hello World</div>;
+  }
+}
+```
+
+通过 `React.Component<Props, State>` 的形式注解了这个类组件的 `Props` 和 `State`
+
+定义了一个 `hardCodeDefaultProps` 来初始化 `defaultProps` 
+
+用类简化类组件的类型注解和默认参数初始化操作
+
+```jsx
+class Props {
+  value: string = 'tuture';
+  onChange(value: string) {
+    console.log('Hello Tuture');
+  }
+}
+
+interface State {
+  content: string;
+  user: string;
+  date: string;
+}
+
+class TodoInput extends React.Component<Props, State> {
+  static defaultProps: Props = new Props();
+
+  render() {
+    return <div>Hello World</div>;
+  }
+}
+```
+
