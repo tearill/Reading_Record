@@ -16,7 +16,7 @@ HTTP 是浏览器使用最广的协议
 
 HTTP 的内容是通过 TCP 的传输数据阶段来实现的
 
-![TCP 和 HTTP 的关系](.\TCP&HTTP.png)
+![TCP 和 HTTP 的关系](./TCP&HTTP.png)
 
 - HTTP 网络请求的第一步？
 
