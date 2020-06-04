@@ -1,0 +1,11 @@
+body {
+  text-align: center;
+  /* background-color: green; */
+  background: url('../imgs/oneFrame.png') no-repeat green;
+}
+
+.font {
+  z-index: 99;
+  /* font-size: 60px; */
+  color: red;
+}
