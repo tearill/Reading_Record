@@ -1,0 +1,18 @@
+{
+  "name": "basic",
+  "version": "1.0.0",
+  "description": "Webpack 是一个 **Javascript** 应用程序的**静态模块打包器**，它会读取 Javascript 文件所需依赖，并把他们打包到一个或多个目标文件。",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
