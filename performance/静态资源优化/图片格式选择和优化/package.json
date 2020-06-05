@@ -1,0 +1,17 @@
+{
+  "name": "images-improve",
+  "version": "1.0.0",
+  "description": "联合图像专家小组，针对彩色照片广泛使用的**有损压缩图片格式**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-pngquant-native": "^2.2.0"
+  },
+  "dependencies": {
+    "jpegtran": "^1.0.6"
+  }
+}
