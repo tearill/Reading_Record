@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>水平垂直居中方式</title>
+  <style>
+    /* * {
+      margin: 0;
+      padding: 0;
+    } */
+    div {
+      border: 5px solid #000;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 10px;
+      /* box-sizing: border-box; */
+    }
+    #box1 {
+      text-align: center;
+    }
+    #box1 span {
+      line-height: 100px;
+    }
+
+    #box2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #box3 {
+      position: relative;
+    }
+
+    #box3 span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #box4 {
+      display: table;
+      text-align: center;
+    }
+    #box4 span {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    #box5 {
+    }
+    #box5 span {
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1">
+    <span>内容</span>
+  </div>
+
+  <div id="box2">
+    <span>内容</span>
+  </div>
+
+  <div id="box3">
+    <span>内容</span>
+  </div>
+
+  <div id="box4">
+    <span>内容</span>
+  </div>
+
+  <div id="box5">
+    <span>内容</span>
+  </div>
+</body>
+</html>
