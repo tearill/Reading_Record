@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsonp 实现跨域</title>
+</head>
+
+<body>
+  <div>
+    Promisefy 的 JSONP => 返回一个 Promise 并添加错误处理<br>
+    1. 创建 script 节点<br>
+    2. 将参数和回调函数拼接到 url 中<br>
+    3. 设置 script 标签的 src，挂载 script 节点发起请求<br>
+    4. 拿到回调结果 resolve，并卸载 script 标签和删除回调函数<br>
+  </div>
+
+  <script>
+    function jsonp({
+      url,
+      params = {},
+      callback
+    }) {
+      return new Promise((resolve, reject) => {
+        let script = document.createElement('script');
+        let arr = [];
+        Object.keys(params).forEach(key => { // url 拼接 params
+          arr.push(`${key}=${params[key]}`);
+        })
+        arr.push(`callback=${callback}`); // url 拼接回调函数
+        script.src = `${url}?${arr.join('&')}`; // 设置请求地址
+        console.log(script.src);
+        document.body.appendChild(script); // 挂载 script 节点
+        window[callback] = function (data) { // 回调函数拿到后端传回来的 data
+          resolve(data);
+          delete window.callback; // 移除回调
+          document.body.removeChild(script); // 移除节点
+        }
+        script.onerror = function (err) { // 错误回调
+          reject(err);
+          delete window.callback;
+          document.body.removeChild(script);
+        }
+      })
+    }
+
+    jsonp({
+      url: 'http://127.0.0.1:3000',
+      params: {
+        msg: 'send to backend'
+      },
+      callback: 'cb'
+    })
+    .then(res => {
+      console.log(res, '-------');
+    })
+  </script>
+</body>
+
+</html>
