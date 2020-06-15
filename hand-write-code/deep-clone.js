@@ -3,8 +3,8 @@
 
 function deepClone(obj) {
   let cloneObj; // 克隆对象
-  // null | 非对象 | 非函数
-  if (obj === null || typeof obj !== 'object' || typeof obj !== 'function') {
+  
+  if (obj === null) { // 为 null 的情况
     return obj;
   }
 
@@ -22,8 +22,8 @@ function deepClone(obj) {
   // 复杂数据类型
   if (Array.isArray(obj)) { // 数组
     cloneObj = [];
-    obj.forEach((item, index) => {
-      cloneObj.push(obj[index]);
+    obj.forEach((item) => {
+      cloneObj.push(item);
     })
   } else { // 对象
     cloneObj = {};
