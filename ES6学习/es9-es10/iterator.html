@@ -1,0 +1,28 @@
+<script>
+  let obj = {
+    a: 1,
+    b: 2,
+    [Symbol.iterator]: function () { // 元编程
+      // this === obj
+      let keys = Object.keys(this); // 当前对象上的所有 key
+      return {
+        next: () => {
+          // for of 每循环一次，调用一次 next
+          let key = keys.shift(); // 弹出一个 key
+          let value = this[key]; // 拿到 value
+          return {
+            done: key === undefined,
+            value: [key, value]
+          }
+        }
+      }
+    }
+  }
+  
+  // 同步的
+  for (let val of obj) {
+    // ['a', 1]
+    // ['b', 2]
+    console.log(val); // 正常会报错
+  }
+</script>

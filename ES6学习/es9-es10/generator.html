@@ -1,0 +1,41 @@
+<script>
+  function* foo() {
+    yield 1;
+    yield Promise.resolve(2);
+    yield true;
+    yield '123';
+    yield function foo() { console.log(1); }
+    yield Symbol('abc');
+  }
+  // 生成 iterator
+  let obj = foo();
+  // 把所有的步骤一次调用完成
+  for (let value of obj) {
+    console.log(value);
+  }
+
+  function* bar() {
+    yield new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(1)
+      }, 3000);
+    })
+    yield new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(2)
+      }, 3000);
+    })
+    yield new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(3)
+      }, 3000);
+    })
+  }
+  let o = bar();
+  async function foo1() {
+    for await (let value of o) {
+      console.log(value);
+    }
+  }
+  foo1();
+</script>
