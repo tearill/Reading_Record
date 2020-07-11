@@ -26,8 +26,8 @@
   Symbol 函数的参数只表示对当前 Symbol 值的描述，因此相同参数的 Symbol 函数的返回值是不相等的 
   ```js
   // 没有参数的情况 
-  var sl =Symbol(); 
-  var s2 =Symbol(); 
+  var sl = Symbol(); 
+  var s2 = Symbol(); 
   sl === s2 // false 
   ```
   ```js
