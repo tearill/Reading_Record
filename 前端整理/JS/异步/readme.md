@@ -72,7 +72,7 @@ console.log(it.next(13)); // { value: 42, done: true }
 分析：  
 1. let it = foo(5)  
 2. 第一次调用 it.next() 函数停在第一个 yield(x + 1)，所以返回值为 5 + 1 = 6  
-3. 第二次调用 it.next(12)，next 中的参数 12 被当作上一个 yield 的返回值，所以 y = 2 * 12 = 24，函数会停在第二个 yield(y / 2)，返回值为 24 / 3 = 8  
+3. 第二次调用 it.next(12)，next 中的参数 12 被当作上一个 yield 的返回值，所以 y = 2 * 12 = 24，函数会停在第二个 yield(y / 3)，返回值为 24 / 3 = 8  
 4. 第三次调用 it.next(13)，next 中的参数 13 被当作上一个 yield 的返回值，**此时 x = 5, y = 24, z = 13**  
 5. 最后 return(x + y + z)，结果为 5 + 24 + 13 = 42  
 
