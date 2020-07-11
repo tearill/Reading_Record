@@ -37,11 +37,12 @@ async function foo() {
 // foo();
 
 function* gen() {
+  // yield 特性：不是立即执行
   yield makeAsync(1000);
   yield makeAsync(2000);
   yield makeAsync(3000);
 }
-let task = gen();
+let task = gen(); // 生成迭代器函数，分步执行 yield 语句
 async function bar() {
   // yield 返回了 promise，所以 for await 等待 promise 结束才会运行下一个异步任务
   for await (let v of task) {
