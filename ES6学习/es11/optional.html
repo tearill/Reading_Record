@@ -1,0 +1,17 @@
+<script>
+  var obj = {
+    a: {
+      b: {
+        c: 1
+      }
+    }
+  }
+
+  // 安全
+  // lodash getIn
+  if (obj.b && obj.b.c) {
+    console.log(a.b.c);
+  }
+
+  console.log(obj?.a?.b?.c);
+</script>

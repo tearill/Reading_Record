@@ -1,0 +1,34 @@
+<script>
+  // lastIndex
+  let reg = /[a-z]/g;
+  let str = 'abc';
+  console.log(reg.test(str), reg.lastIndex); // a
+  console.log(reg.test(str), reg.lastIndex); // b
+  console.log(reg.test(str), reg.lastIndex); // c
+  // 修改正则匹配的位置
+  // reg.lastIndex = 0;
+  console.log(reg.test(str), reg.lastIndex); // 第四次变成了 false
+  // 每一次会从上次匹配的位置开始
+
+  console.log(reg.exec(str));
+  console.log(reg.exec(str));
+  console.log(reg.exec(str));
+  console.log(reg.exec(str));
+
+  let keywordsReg = /function|return|class/g;
+  let code = `
+  function foo() {
+    return true;
+  }
+  `
+  // 以前 得到所有 正则能够匹配到的内容
+  let info = keywordsReg.exec(code);
+  while(info) {
+    console.log(info);
+    info = keywordsReg.exec(code);
+  }
+
+  // matchAll => 返回 iterator => for of
+  console.log(code.matchAll(keywordsReg));
+  console.log(...code.matchAll(keywordsReg), '----');
+</script>

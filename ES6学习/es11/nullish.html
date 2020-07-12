@@ -1,0 +1,17 @@
+<script>
+  // nullish 操作符
+  // false 0 '' => 合法，不应当作不成立
+  // || ??
+  console.log('' || 123);
+  console.log('' ?? 123); // 将 '' 认为是 true
+
+  console.log(false || 123);
+  console.log(false ?? 123);
+
+  console.log(0 || 123);
+  console.log(0 ?? 123);
+
+  // ?? 只有 null 或者 undefined 才为 false
+  console.log(null || 123);
+  console.log(null ?? 123);
+</script>

@@ -1,0 +1,6 @@
+js 可能运行在 浏览器，也可能是 node
+if (typeof window !== undefined) {
+
+} else {
+  node
+}

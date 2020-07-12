@@ -1,0 +1,27 @@
+<script>
+  let arr = [
+    Promise.resolve(1),
+    Promise.reject('err'),
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(0);
+      }, 3000);
+    })
+  ]
+  // all：所有的 resolve
+  // race：最早发生状态变化的
+  // allSettled：不要求所有的 resolve / reject 不要求结果，
+  Promise.allSettled(arr).then(r => {
+    console.log(r, 'allSettled');
+  })
+
+  // JSON 为什么不能序列化函数、undefined、symbol
+  // js 里面的对象
+  let a = {
+    key: function() {},
+    a: 12,
+    arr: [1, 2]
+  }
+  // JSON 是独立的规范
+  // JSON 只有 number、arr、对象({})、字符串等
+</script>

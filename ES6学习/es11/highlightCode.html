@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>代码高亮</title>
+  <style>
+    .keywords {
+      color: red;
+    }
+    .brackets {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <pre id="wrapper">
+
+  </pre>
+  <script>
+    const wrap = document.getElementById('wrapper');
+    // 关键词 括号 空白
+    let reg = /(function|return|class)|([\(\)\{\}])|([ \t\r\n]+)/g;
+    let map = ['keywords', 'brackets', 'whitespace'];
+    let code = `
+    function sleep() {
+      return Promise.resolve();
+    }
+    `;
+    let info = reg.exec(code);
+    // 返回一个数组
+    // [匹配到了什么内容, 1~n(匹配到的内容在第几个分组上)]
+    while(info) {
+      // console.log(info);
+      // 拿到匹配到了什么内容
+      let content = info[0];
+      // 内容属于哪个分组
+      let index = info.slice(1).findIndex(e => e === content);
+      console.log(index, content);
+      const span = document.createElement('span');
+      span.textContent = content;
+      span.classList.add(map[index]); // 属于哪个分组类型
+      wrap.appendChild(span);
+      info = reg.exec(code);
+    }
+  </script>
+</body>
+</html>
