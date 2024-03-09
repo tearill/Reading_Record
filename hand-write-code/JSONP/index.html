@@ -15,46 +15,108 @@
     3. 设置 script 标签的 src，挂载 script 节点发起请求<br>
     4. 拿到回调结果 resolve，并卸载 script 标签和删除回调函数<br>
   </div>
+  <button onclick="request()">request</button>
 
   <script>
-    function jsonp({
-      url,
-      params = {},
-      callback
-    }) {
-      return new Promise((resolve, reject) => {
-        let script = document.createElement('script');
-        let arr = [];
-        Object.keys(params).forEach(key => { // url 拼接 params
-          arr.push(`${key}=${params[key]}`);
-        })
-        arr.push(`callback=${callback}`); // url 拼接回调函数
-        script.src = `${url}?${arr.join('&')}`; // 设置请求地址
-        console.log(script.src);
-        document.body.appendChild(script); // 挂载 script 节点
-        window[callback] = function (data) { // 回调函数拿到后端传回来的 data
-          resolve(data);
-          delete window.callback; // 移除回调
-          document.body.removeChild(script); // 移除节点
-        }
-        script.onerror = function (err) { // 错误回调
-          reject(err);
-          delete window.callback;
-          document.body.removeChild(script);
-        }
-      })
+    function request() {
+      jsonp(
+        'http://127.0.0.1:3000',
+        {
+          msg: 'send to backend'
+        },
+        'cb',
+        handler
+      );
     }
 
-    jsonp({
-      url: 'http://127.0.0.1:3000',
-      params: {
-        msg: 'send to backend'
-      },
-      callback: 'cb'
-    })
-    .then(res => {
-      console.log(res, '-------');
-    })
+    function jsonp(url, params, callbackName, callback) {
+      console.log('---start request---');
+      const script = document.createElement('script');
+      const paramsArr = [];
+
+      // 拼接参数
+      // Object.keys(params).forEach(key => {
+      //   paramsArr.push(`${key}=${params[key]}`);
+      // });
+
+      for (const key in params) {
+        paramsArr.push(`${key}=${params[key]}`);
+      }
+
+      console.log('params: ', paramsArr);
+
+      const safeCallbackName = 'jsonp_' + callbackName + '_' + Date.now();
+
+      console.log('safeCallbackName: ', safeCallbackName);
+
+      // 拼接回调函数
+      paramsArr.push(`callback=${safeCallbackName}`);
+
+      // 注册全局回调
+      window[safeCallbackName] = function(data) {
+
+          // 处理结果
+          callback && typeof callback === 'function' && callback(data);
+
+          // 删除全局回调，防止 oom
+          delete window[safeCallbackName];
+
+          // 移除标签
+          document.body.removeChild(script);
+      }
+
+      // 设置 src
+      console.log('join: ', paramsArr.join('&'));
+      const src = url + (url.indexOf('?') === -1 ? '?' : '') + paramsArr.join('&');
+      script.src = src;
+      console.log('src: ', src);
+
+      // 将脚本标签添加到文档中
+      document.body.appendChild(script);
+    }
+
+    function handler(data) {
+      console.log('res: ', data);
+    }
+
+    // function jsonp({
+    //   url,
+    //   params = {},
+    //   callback
+    // }) {
+    //   return new Promise((resolve, reject) => {
+    //     let script = document.createElement('script');
+    //     let arr = [];
+    //     Object.keys(params).forEach(key => { // url 拼接 params
+    //       arr.push(`${key}=${params[key]}`);
+    //     })
+    //     arr.push(`callback=${callback}`); // url 拼接回调函数
+    //     script.src = `${url}?${arr.join('&')}`; // 设置请求地址
+    //     console.log(script.src);
+    //     document.body.appendChild(script); // 挂载 script 节点
+    //     window[callback] = function (data) { // 回调函数拿到后端传回来的 data
+    //       resolve(data);
+    //       delete window.callback; // 移除回调
+    //       document.body.removeChild(script); // 移除节点
+    //     }
+    //     script.onerror = function (err) { // 错误回调
+    //       reject(err);
+    //       delete window.callback;
+    //       document.body.removeChild(script);
+    //     }
+    //   })
+    // }
+
+    // jsonp({
+    //   url: 'http://127.0.0.1:3000',
+    //   params: {
+    //     msg: 'send to backend'
+    //   },
+    //   callback: 'cb'
+    // })
+    // .then(res => {
+    //   console.log(res, '-------');
+    // })
   </script>
 </body>
 
